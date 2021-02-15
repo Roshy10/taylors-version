@@ -1,38 +1,46 @@
 {
   "name": "taylors-version",
-  "version": "0.1.0",
+  "version": "0.0.0",
+  "description": "Updates your playlists to use the \"Taylor's version\" of a song where available",
+  "author": "Roshan Bhumbra",
+  "license": "GPL-3.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.7.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.2",
-    "web-vitals": "^1.1.0"
-  },
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-jasmine": "^4.1.1",
+    "eslint-plugin-react": "^7.19.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.2.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.2"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@material-ui/core": "^4.9.10",
+    "axios": "^0.21.1",
+    "axios-hooks": "^1.10.0",
+    "babel-polyfill": "^6.26.0",
+    "i18next": "^19.4.3",
+    "lodash": "^4.17.20",
+    "q": "^1.5.1",
+    "query-string": "^6.14.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-i18next": "^11.3.5",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-saga": "^1.1.3",
+    "spotify-web-api-js": "^1.5.1",
+    "uuid": "^8.3.2"
   }
 }

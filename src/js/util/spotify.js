@@ -1,0 +1,1 @@
+export const uriToId = (uri) => uri.split(":")[2];

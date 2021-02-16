@@ -1,31 +1,37 @@
+import {Container, ThemeProvider} from "@material-ui/core";
 import React from "react";
 import {Provider} from "react-redux";
 import {BrowserRouter as HashRouter, Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore} from "redux";
 import createSagaMiddleware from "redux-saga";
-import TopBar from "./components/layout/TopBar";
-import Configure from "./components/pages/process/Configure";
-import Landing from "./components/pages/landing/Landing";
+import TopBar from "./components/TopBar";
+import Landing from "./pages/landing/Landing";
+import Configure from "./pages/process/Configure";
 import rootReducer from "./reducers/rootReducer";
 import rootSaga from "./sagas/rootSaga";
+import theme from "./theme";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
     rootReducer,
-    applyMiddleware(sagaMiddleware)
+    applyMiddleware(sagaMiddleware),
 );
 sagaMiddleware.run(rootSaga);
 
 function App() {
     return (
         <Provider store={store}>
-            <HashRouter basename="/#">
-                <TopBar/>
-                <Switch>
-                    <Route exact component={Landing} path="/"/>
-                    <Route exact component={Configure} path="/process"/>
-                </Switch>
-            </HashRouter>
+            <ThemeProvider theme={theme}>
+                <HashRouter basename="/#">
+                    <TopBar/>
+                    <Container fixed>
+                        <Switch>
+                            <Route exact component={Landing} path="/"/>
+                            <Route exact component={Configure} path="/setup"/>
+                        </Switch>
+                    </Container>
+                </HashRouter>
+            </ThemeProvider>
         </Provider>
     );
 }

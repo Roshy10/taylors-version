@@ -12,6 +12,12 @@ const AuthReducer = (state = {}, action) => {
         case "AUTH/CLEAR":
             return {};
 
+        case "AUTH/SAVE_USER":
+            return assign({}, state, {
+                id: action.payload.id,
+                name: action.payload.name,
+            });
+
         default:
             return state;
     }

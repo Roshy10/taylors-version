@@ -10,7 +10,10 @@ const en = {
         },
         process: {
             configure: {
-                listTitle: "Playlists:"
+                listTitle: "Playlists which can be updated:",
+                includePublic: "Your Public playlists",
+                includeCollaborative: "Your Collaborative Playlists",
+                includeOthers: "Other's Collaborative Playlists",
             }
         }
     }

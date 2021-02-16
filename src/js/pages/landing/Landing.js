@@ -5,9 +5,9 @@ import React, {Fragment, useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import {useHistory, useLocation} from "react-router-dom";
-import {storeToken} from "../../../actions/AuthActions";
-import useAuthToken from "../../../hooks/useAuthToken";
-import useStickyState from "../../../hooks/useStickyState";
+import {storeToken} from "../../actions/AuthActions";
+import useAuthToken from "../../hooks/useAuthToken";
+import useStickyState from "../../hooks/useStickyState";
 import SpotifyTokenButton from "./SpotifyTokenButton";
 
 export const Landing = () => {
@@ -27,7 +27,7 @@ export const Landing = () => {
 
     const tokenNeeded = !token || (accessToken && state !== responseHash.state);
 
-    const nextStep = () => history.push("/process");
+    const nextStep = () => history.push("/setup");
 
     // check the response was good
     if (accessToken && state !== responseHash.state) {

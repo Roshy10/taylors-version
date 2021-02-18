@@ -4,7 +4,7 @@ import {isEmpty} from "lodash";
 import React, {useEffect, useMemo} from "react";
 import {useTranslation} from "react-i18next";
 import {v4 as uuidv4} from "uuid";
-import useStickyState from "../../hooks/useStickyState";
+import useStickyState from "../hooks/useStickyState";
 
 const clientId = "1b5718d03b174bfb8988f14bfac422a6";
 const permissionScopes = [

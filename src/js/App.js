@@ -4,12 +4,12 @@ import {Provider} from "react-redux";
 import {Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore} from "redux";
 import createSagaMiddleware from "redux-saga";
+import ConfigurePage from "./components/ConfigurePage";
+import LandingPage from "./components/LandingPage";
 import TopBar from "./components/TopBar";
-import Landing from "./pages/landing/Landing";
-import Configure from "./pages/process/Configure";
 import rootReducer from "./reducers/rootReducer";
 import rootSaga from "./sagas/rootSaga";
-import theme from "./theme";
+import index from "./themes";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
@@ -21,12 +21,12 @@ sagaMiddleware.run(rootSaga);
 function App() {
     return (
         <Provider store={store}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={index}>
                 <TopBar/>
                 <Container fixed>
                     <Switch>
-                        <Route exact component={Landing} path="/"/>
-                        <Route exact component={Configure} path="/setup"/>
+                        <Route exact component={LandingPage} path="/"/>
+                        <Route exact component={ConfigurePage} path="/setup"/>
                     </Switch>
                 </Container>
             </ThemeProvider>

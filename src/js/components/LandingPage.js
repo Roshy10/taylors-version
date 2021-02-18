@@ -5,9 +5,9 @@ import React, {Fragment, useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import {useHistory, useLocation} from "react-router-dom";
-import {storeToken} from "../../actions/AuthActions";
-import useAuthToken from "../../hooks/useAuthToken";
-import useStickyState from "../../hooks/useStickyState";
+import {storeToken} from "../actions/AuthActions";
+import useAuthToken from "../hooks/useAuthToken";
+import useStickyState from "../hooks/useStickyState";
 import SpotifyTokenButton from "./SpotifyTokenButton";
 
 export const hooks = {
@@ -19,7 +19,7 @@ export const hooks = {
     useLocation,
 };
 
-export const Landing = () => {
+export const LandingPage = () => {
     const {t} = hooks.useTranslation();
     const history = hooks.useHistory();
     const dispatch = hooks.useDispatch();
@@ -40,9 +40,11 @@ export const Landing = () => {
     // check the response was good
     if (accessToken && state !== responseHash.state) {
         // returned token didn't match the token we have saved, likely the original API request didn't originate from this site
+        // TODO show this as an error to the user
         console.error("Spotify state token mismatch");
     } else if (!isEmpty(responseSearch.error)) {
         // there was an error in the OAuth flow, the user probably declined the permissions
+        // TODO show this as an error to the user
         console.info("User declined permissions");
     }
 
@@ -65,4 +67,4 @@ export const Landing = () => {
     );
 };
 
-export default Landing;
+export default LandingPage;

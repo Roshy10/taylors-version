@@ -120,9 +120,15 @@ export const Configure = () => {
                         <ListItemIcon>
                             <ArrowRightAltIcon/>
                         </ListItemIcon>
-                        <MediaArtwork externalUrls={replacementTrack.external_urls} images={replacementTrack.album && replacementTrack.album.images}/>
-                        <ListItemText className={classes.trackText} primary={replacementTrack.name}
-                                      secondary={replacementTrack.album && replacementTrack.album.name}/>
+                        <MediaArtwork
+                            externalUrls={replacementTrack.external_urls}
+                            images={replacementTrack.album && replacementTrack.album.images}
+                        />
+                        <ListItemText
+                            className={classes.trackText}
+                            primary={replacementTrack.name}
+                            secondary={replacementTrack.album && replacementTrack.album.name}
+                        />
                     </Fragment>
                 )}
             </ListItem>

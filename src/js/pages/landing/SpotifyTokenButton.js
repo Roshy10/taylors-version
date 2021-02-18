@@ -16,7 +16,6 @@ const permissionScopes = [
     "user-library-modify",
     "user-library-read",
 ];
-const uuid = uuidv4();
 const baseAuthURL = "https://accounts.spotify.com/authorize";
 
 export const SpotifyTokenButton = () => {
@@ -36,7 +35,7 @@ export const SpotifyTokenButton = () => {
 
     useEffect(() => {
         if (isEmpty(state)) {
-            setState(uuid);
+            setState(uuidv4());
         }
     }, []);
 

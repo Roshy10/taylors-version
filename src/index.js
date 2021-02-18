@@ -1,7 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./js/App";
+import {BrowserRouter as HashRouter} from "react-router-dom";
 import "./i18n";
+import App from "./js/App";
 
 const wrapper = document.getElementById("container");
-wrapper ? ReactDOM.render(<App/>, wrapper) : false;
+wrapper ? ReactDOM.render(
+    <HashRouter basename="/#">
+        <App/>
+    </HashRouter>
+    , wrapper) : false;

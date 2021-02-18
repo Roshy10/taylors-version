@@ -10,17 +10,25 @@ import useAuthToken from "../../hooks/useAuthToken";
 import useStickyState from "../../hooks/useStickyState";
 import SpotifyTokenButton from "./SpotifyTokenButton";
 
+export const hooks = {
+    useTranslation,
+    useHistory,
+    useDispatch,
+    useStickyState,
+    useAuthToken,
+    useLocation,
+};
+
 export const Landing = () => {
-    const {t} = useTranslation();
-    const history = useHistory();
-    const dispatch = useDispatch();
+    const {t} = hooks.useTranslation();
+    const history = hooks.useHistory();
+    const dispatch = hooks.useDispatch();
 
-    const [state] = useStickyState("spotifyState");
-    const token = useAuthToken();
-
+    const [state] = hooks.useStickyState("spotifyState");
+    const token = hooks.useAuthToken();
 
     // detect incoming token
-    const params = useLocation();
+    const params = hooks.useLocation();
     const responseSearch = params && params.search && queryString.parse(params.search);
     const responseHash = params && params.hash && queryString.parse(params.hash);
     const accessToken = responseHash && responseHash.access_token;

@@ -1,11 +1,12 @@
 {
   "name": "taylors-version",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Updates your playlists to use the \"Taylor's version\" of a song where available",
   "author": "Roshan Bhumbra",
   "license": "GPL-3.0",
   "private": true,
   "main": "index.js",
+  "sideEffects": false,
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"

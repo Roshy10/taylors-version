@@ -1,7 +1,7 @@
 import {Container, ThemeProvider} from "@material-ui/core";
 import React from "react";
 import {Provider} from "react-redux";
-import {BrowserRouter as HashRouter, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {applyMiddleware, createStore} from "redux";
 import createSagaMiddleware from "redux-saga";
 import TopBar from "./components/TopBar";
@@ -22,15 +22,13 @@ function App() {
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <HashRouter basename="/#">
-                    <TopBar/>
-                    <Container fixed>
-                        <Switch>
-                            <Route exact component={Landing} path="/"/>
-                            <Route exact component={Configure} path="/setup"/>
-                        </Switch>
-                    </Container>
-                </HashRouter>
+                <TopBar/>
+                <Container fixed>
+                    <Switch>
+                        <Route exact component={Landing} path="/"/>
+                        <Route exact component={Configure} path="/setup"/>
+                    </Switch>
+                </Container>
             </ThemeProvider>
         </Provider>
     );

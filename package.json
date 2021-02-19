@@ -6,7 +6,9 @@
   "license": "GPL-3.0",
   "private": true,
   "main": "index.js",
-  "sideEffects": false,
+  "sideEffects": [
+    "./src/i18n.js"
+  ],
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
@@ -30,6 +32,7 @@
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
     "axios-retry-after": "^1.0.2",
+    "babel-plugin-lodash": "^3.3.4",
     "babel-polyfill": "^6.26.0",
     "i18next": "^19.4.3",
     "lodash": "^4.17.20",

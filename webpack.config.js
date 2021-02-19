@@ -1,11 +1,11 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-module.exports = (env,argv) => ({
+module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            appUrl: (argv.mode==="production") ? "https://taylors-version.com" : "http://localhost:9000"
-        })
+            appUrl: process.env.APP_URL,
+        }),
     },
     module: {
         rules: [
@@ -40,14 +40,14 @@ module.exports = (env,argv) => ({
         })
     ],
     entry: {
-        js: ["babel-polyfill", "./src/index.js"],
-        vendor: ["react"]
+        main: ["babel-polyfill", "./src/index.js"],
+        //vendor: ["react"]
     },
     devServer: {
         // start development server on the specified port
         port: 9000,
-        open: false
+        open: false,
     },
     // enable source maps to aid in debugging
-    devtool: "source-map"
-});
+    devtool: "source-map",
+};

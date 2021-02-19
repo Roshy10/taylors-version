@@ -11,6 +11,7 @@ const permissionScopes = [
     // see the items in a user's playlist, and update them
     "playlist-read-private",
     "playlist-read-collaborative",
+    "playlist-modify-public",
     "playlist-modify-private",
     // see a users saved songs/albums, and update them
     "user-library-modify",

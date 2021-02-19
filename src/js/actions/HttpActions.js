@@ -21,7 +21,7 @@ export const postRequest = (url, params) => ({
 export const deleteRequest = (url, data) => ({
     type: "HTTP/REQUEST",
     payload: {
-        method: "post",
+        method: "delete",
         url,
         data,
     },

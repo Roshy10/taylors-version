@@ -35,7 +35,7 @@ const Playlist = ({excluded, data, toggleExcluded}) => {
             <Collapse unmountOnExit in={expanded} timeout="auto">
                 <List disablePadding component="div">
                     {isArray(data.tracks) && data.tracks.map((track) =>
-                        <Track data={track} key={track.uri}/>,
+                        <Track data={track} key={track.index}/>,
                     )}
                 </List>
             </Collapse>

@@ -1,4 +1,4 @@
-import {get} from "./HttpActions";
+import {getRequest} from "./HttpActions";
 
 // you should use this instead of "getTrackDetails" as it:
 // - batches requests into 50 at a time
@@ -11,7 +11,7 @@ export const requestTrackDetails = (uris) => ({
 
 // This only takes up to 50 ids in one go
 // you should probably use "requestTrackDetails" instead of this
-export const getTrackDetails = (ids) => get(
+export const getTrackDetails = (ids) => getRequest(
     "/tracks",
     {
         ids,

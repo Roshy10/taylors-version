@@ -1,64 +1,85 @@
 import axios from "axios";
-import {assign} from "lodash";
-import {call, delay, put, select, takeEvery} from "redux-saga/effects";
+import retry from "axios-retry-after";
+import {assign, isEmpty} from "lodash";
+import {call, put, select, takeEvery} from "redux-saga/effects";
 import {expireToken} from "../actions/AuthActions";
-import {received, sent} from "../actions/HttpActions";
+import {failure, received, sent} from "../actions/HttpActions";
 
-const baseUrl = "https://api.spotify.com/v1";
-
-const requestData = (token, {method, url, params, fullUrl}) => axios({
-    method,
-    url: fullUrl || (baseUrl + url),
-    params,
-    headers: {
-        "Authorization": "Bearer " + token,
-    },
+const client = axios.create({
+    baseURL: "https://api.spotify.com/v1",
 });
+// automatically retry 429s
+client.interceptors.response.use(null, retry(client));
 
-function* makeRequest(action) {
+const requestData = (token, {method, url, params, data}) => {
+    let config = {
+        method,
+        url,
+        params,
+        headers: {
+            "Authorization": "Bearer " + token,
+        },
+    };
+
+    if (!isEmpty(data)) {
+        config.data = JSON.stringify(data);
+        config.headers["Content-Type"] = "application/json";
+    }
+
+    return client.request(config);
+};
+
+export function* makeRequest(action) {
     let token = yield select((state => state.AuthReducer.token));
     if (token) {
         // log that we have a request in-flight
         yield put(sent);
-        const {data, headers, status, statusText} = yield call(requestData, token, action.payload);
+        try {
+            const {data, status, statusText} = yield call(requestData, token, action.payload);
 
-        if (status === 200) {
-            if (data.next) {
-                // inject the pagination url and dispatch a new request to continue getting the rest of the playlists
-                // hopefully people don't have too many or this may take a while and choke up the browser
-                const newAction = assign({}, action, {payload: {fullUrl: data.next}});
-                yield put(newAction);
-            }
+            // log that we have once less request in-flight
+            yield put(received);
 
-            if (action.onSuccessAction) {
-                let content = (data && data.items) || data;
+            if (status === 200 || status === 201) {
 
-                if (action.includeIndex) {
-                    // add the absolute index of the item, accounting for pagination
-                    content = content.map((item, index) => ({
-                        ...item,
-                        index: data.offset + index,
-                    }));
+                if (data.next) {
+                    // inject the pagination url and dispatch a new request to continue getting the rest of the playlists
+                    // hopefully people don't have too many or this may take a while and choke up the browser
+                    const newAction = assign({}, action, {payload: {url: data.next}});
+                    yield put(newAction);
                 }
 
-                yield put(action.onSuccessAction(content, action));
+                if (action.onSuccessAction) {
+                    let content = (data && data.items) || data;
+
+                    if (action.includeIndex) {
+                        // add the absolute index of the item, accounting for pagination
+                        content = content.map((item, index) => ({
+                            ...item,
+                            index: data.offset + index,
+                        }));
+                    }
+
+                    yield put(action.onSuccessAction(content, action));
+                }
+
+                return true;
+
+            } else if (status === 401 || status === 403) {
+                // request was declined due to permissions, invalidate the token and force the user to get a new one
+                yield put(expireToken());
+            } else {
+                yield put(failure(statusText, action));
             }
 
-        } else if (status === 429) {
-            // request was declined due to rate limit being exceeded
-            yield delay(headers["retry-after"] * 1000);
-            yield put(action);
-        } else if (status === 401 || status === 403) {
-            // request was declined due to permissions, invalidate the token and force the user to get a new one
-            yield put(expireToken());
-        } else {
-            yield put({type: "HTTP_REQUEST_FAILED", message: statusText});
+        } catch (error) {
+            yield put(received);
+            // catch errors from the api call
+            yield put(failure(error, action));
         }
 
-        // log that we have once less request in-flight
-        yield put(received);
     } else {
-        yield put({type: "HTTP_REQUEST_FAILED", message: "no Auth Token"});
+        yield put(failure("no auth token", action));
     }
 }
 

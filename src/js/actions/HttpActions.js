@@ -1,4 +1,4 @@
-export const get = (url, params, onSuccessAction, includeIndex = false) => ({
+export const getRequest = (url, params, onSuccessAction, includeIndex = false) => ({
     type: "HTTP/REQUEST",
     payload: {
         method: "get",
@@ -9,10 +9,36 @@ export const get = (url, params, onSuccessAction, includeIndex = false) => ({
     includeIndex,
 });
 
+export const postRequest = (url, params) => ({
+    type: "HTTP/REQUEST",
+    payload: {
+        method: "post",
+        url,
+        params,
+    },
+});
+
+export const deleteRequest = (url, data) => ({
+    type: "HTTP/REQUEST",
+    payload: {
+        method: "post",
+        url,
+        data,
+    },
+});
+
 export const sent = ({
     type: "HTTP/SENT",
 });
 
 export const received = ({
     type: "HTTP/RECEIVED",
+});
+
+export const failure = (message, failedAction) => ({
+    type: "HTTP/FAILURE",
+    payload: {
+        message,
+        failedAction,
+    },
 });

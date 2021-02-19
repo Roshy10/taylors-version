@@ -1,9 +1,9 @@
 import {put, takeLatest} from "redux-saga/effects";
 import {saveUser} from "../actions/AuthActions";
-import {get} from "../actions/HttpActions";
+import {getRequest} from "../actions/HttpActions";
 
 function* getUserDetails() {
-    yield put(get("/me", {}, saveUser));
+    yield put(getRequest("/me", {}, saveUser));
 }
 
 function* AuthSaga() {

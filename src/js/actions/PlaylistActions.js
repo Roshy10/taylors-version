@@ -1,5 +1,5 @@
 import {nth} from "lodash";
-import {get} from "./HttpActions";
+import {getRequest} from "./HttpActions";
 
 export const getAllTracksForPlaylists = (playlists) => ({
     type: "PLAYLIST/ALL_TRACKS",
@@ -13,7 +13,7 @@ const storePlaylists = (playlists) => ({
     payload: playlists,
 });
 
-export const getPlaylists = () => get(
+export const getPlaylists = () => getRequest(
     "/me/playlists",
     {limit: 50},
     storePlaylists,
@@ -39,7 +39,7 @@ export const requestPlaylistTracks = (playlistId) => ({
     },
 });
 
-export const getPlaylistTracks = (playlistId) => get(
+export const getPlaylistTracks = (playlistId) => getRequest(
     `/playlists/${playlistId}/tracks`,
     {
         limit: 100,

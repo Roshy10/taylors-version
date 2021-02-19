@@ -8,6 +8,7 @@ import {Redirect} from "react-router-dom";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
 import useAuthToken from "../hooks/useAuthToken";
 import PlaylistList from "./PlaylistList";
+import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
 const useStyles = makeStyles((theme) => ({
     formGroup: {
@@ -69,6 +70,10 @@ export const ConfigurePage = () => {
     // the reducer should have dropped any tracks we don't care about as the api responses came in
     const swappablePlaylists = filteredPlaylists.filter((playlist) => isArray(playlist.tracks) && playlist.tracks.length > 0);
 
+    const replacements = swappablePlaylists
+        // strip off the playlists the user has excluded
+        .filter((playlist) => !includes(excludedPlaylists, playlist.id));
+
     if (!token) {
         // token isn't valid, back to home screen
         return <Redirect to="/"/>;
@@ -113,6 +118,7 @@ export const ConfigurePage = () => {
                     label={t("process.configure.includeOthers")}
                 />
             </FormGroup>
+            <UpdatePlaylistsDialog replacements={replacements}/>
             <Typography variant="h2">
                 {t("process.configure.listTitle")}
             </Typography>

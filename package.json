@@ -29,6 +29,7 @@
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
+    "axios-retry-after": "^1.0.2",
     "babel-polyfill": "^6.26.0",
     "i18next": "^19.4.3",
     "lodash": "^4.17.20",

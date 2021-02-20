@@ -1,4 +1,5 @@
-import {Button} from "@material-ui/core";
+import {Box, Button} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
 import {isEmpty} from "lodash";
 import queryString from "query-string";
 import React, {Fragment, useEffect} from "react";
@@ -10,25 +11,33 @@ import useAuthToken from "../hooks/useAuthToken";
 import useStickyState from "../hooks/useStickyState";
 import SpotifyTokenButton from "./SpotifyTokenButton";
 
-export const hooks = {
-    useTranslation,
-    useHistory,
-    useDispatch,
-    useStickyState,
-    useAuthToken,
-    useLocation,
-};
+const useStyles = makeStyles((theme) => ({
+    buttonContainer: {
+        display: "flex",
+        justifyContent: "center",
+    },
+    button: {
+        marginTop: theme.spacing(3),
+        [theme.breakpoints.down("sm")]: {
+            marginTop: theme.spacing(2),
+        },
+        [theme.breakpoints.down("xs")]: {
+            width: "100%",
+        },
+    },
+}));
 
 export const LandingPage = () => {
-    const {t} = hooks.useTranslation();
-    const history = hooks.useHistory();
-    const dispatch = hooks.useDispatch();
+    const {t} = useTranslation();
+    const history = useHistory();
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
-    const [state] = hooks.useStickyState("spotifyState");
-    const token = hooks.useAuthToken();
+    const [state] = useStickyState("spotifyState");
+    const token = useAuthToken();
 
     // detect incoming token
-    const params = hooks.useLocation();
+    const params = useLocation();
     const responseSearch = params && params.search && queryString.parse(params.search);
     const responseHash = params && params.hash && queryString.parse(params.hash);
     const accessToken = responseHash && responseHash.access_token;
@@ -60,9 +69,11 @@ export const LandingPage = () => {
 
     return (
         <Fragment>
-            {tokenNeeded
-                ? <SpotifyTokenButton/>
-                : <Button onClick={nextStep}>{t("landing.start")}</Button>}
+            <Box className={classes.buttonContainer}>
+                {tokenNeeded
+                    ? <SpotifyTokenButton className={classes.button}/>
+                    : <Button className={classes.button} onClick={nextStep}>{t("landing.start")}</Button>}
+            </Box>
         </Fragment>
     );
 };

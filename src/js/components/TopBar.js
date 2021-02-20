@@ -7,14 +7,16 @@ import {Link as RouterLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     link: {
-        margin: `${theme.spacing(1)}px auto`,
+        margin: theme.spacing(1, "auto"),
     },
     title: {
         color: theme.palette.primary.contrastText,
         paddingBottom: 3,
         fontSize: "3rem",
-    },
-    offset: theme.mixins.toolbar,
+        [theme.breakpoints.down("sm")]: {
+            fontSize: "2rem",
+        },
+    }
 }));
 
 export const TopBar = () => {
@@ -32,7 +34,7 @@ export const TopBar = () => {
                     </Link>
                 </Toolbar>
             </AppBar>
-            <div className={classes.offset}/>
+            <Toolbar/>
         </Fragment>
     );
 };

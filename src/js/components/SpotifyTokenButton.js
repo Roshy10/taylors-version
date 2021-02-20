@@ -5,6 +5,7 @@ import React, {useEffect, useMemo} from "react";
 import {useTranslation} from "react-i18next";
 import {v4 as uuidv4} from "uuid";
 import useStickyState from "../hooks/useStickyState";
+import SpotifyIcon from "../icons/SpotifyIcon";
 
 const clientId = "1b5718d03b174bfb8988f14bfac422a6";
 const permissionScopes = [
@@ -19,7 +20,7 @@ const permissionScopes = [
 ];
 const baseAuthURL = "https://accounts.spotify.com/authorize";
 
-export const SpotifyTokenButton = () => {
+export const SpotifyTokenButton = (props) => {
     const {t} = useTranslation();
     const [state, setState] = useStickyState("spotifyState");
 
@@ -41,7 +42,13 @@ export const SpotifyTokenButton = () => {
     }, []);
 
     return (
-        <Button href={authUrl}>
+        <Button
+            color="primary"
+            endIcon={<SpotifyIcon/>}
+            href={authUrl}
+            variant="contained"
+            {...props}
+        >
             {t("authorize.startButton")}
         </Button>
     );

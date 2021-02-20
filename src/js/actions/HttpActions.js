@@ -34,11 +34,3 @@ export const sent = ({
 export const received = ({
     type: "HTTP/RECEIVED",
 });
-
-export const failure = (message, failedAction) => ({
-    type: "HTTP/FAILURE",
-    payload: {
-        message,
-        failedAction,
-    },
-});

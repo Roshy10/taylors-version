@@ -1,5 +1,7 @@
-import {Backdrop, CircularProgress, FormControlLabel, FormGroup, Switch, Typography} from "@material-ui/core";
+import {Backdrop, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import {Close, Tune} from "@material-ui/icons";
+import clsx from "clsx";
 import {concat, includes, isArray, without} from "lodash";
 import React, {Fragment, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
@@ -7,16 +9,33 @@ import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
 import useAuthToken from "../hooks/useAuthToken";
+import Notifications from "./Notifications";
 import PlaylistList from "./PlaylistList";
 import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
 const useStyles = makeStyles((theme) => ({
-    formGroup: {
-        marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(2),
+    filterButton: {
+        float: "right",
+    },
+    updateButton: {
+        marginTop: theme.spacing(1.5),
+        [theme.breakpoints.down("sm")]: {
+            marginTop: theme.spacing(1),
+        },
     },
     listTitle: {
         fontSize: "2rem",
+        marginTop: theme.spacing(1),
+    },
+    filters: {
+        [theme.breakpoints.up("md")]: {
+            float: "right",
+        },
+    },
+    formGroup: {
+        [theme.breakpoints.down("md")]: {
+            marginTop: theme.spacing(1),
+        },
     },
     backdrop: {
         zIndex: theme.zIndex.tooltip + 1,
@@ -27,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export const ConfigurePage = () => {
     const {t} = useTranslation();
     const classes = useStyles();
+    const compactFilters = useMediaQuery((theme) => theme.breakpoints.down("md"));
     const token = useAuthToken();
     const dispatch = useDispatch();
     const playlists = useSelector(state => state.PlaylistReducer.playlists);
@@ -35,6 +55,7 @@ export const ConfigurePage = () => {
     const [includePublic, setIncludePublic] = useState(true);
     const [includeCollab, setIncludeCollab] = useState(true);
     const [includeOthers, setIncludeOthers] = useState(false);
+    const [filtersExpanded, setFiltersExpanded] = useState(false);
     const [excludedPlaylists, setExcludedPlaylists] = useState([]);
 
     useEffect(() => {
@@ -86,42 +107,56 @@ export const ConfigurePage = () => {
         );
     };
 
+    const FormButtons = ({className}) => (
+        <FormGroup row className={clsx(className, classes.filters)}>
+            <FormControlLabel
+                control={<Switch
+                    checked={includePublic}
+                    onChange={() => setIncludePublic((val) => !val)}
+                />}
+                label={t("process.configure.includePublic")}
+            />
+            <FormControlLabel
+                control={<Switch
+                    checked={includeCollab}
+                    onChange={() => setIncludeCollab((val) => {
+                        const newVal = !val;
+                        if (!newVal) {
+                            setIncludeOthers(false);
+                        }
+                        return newVal;
+                    })}
+                />}
+                label={t("process.configure.includeCollaborative")}
+            />
+            <FormControlLabel
+                control={<Switch
+                    checked={includeOthers}
+                    disabled={!includeCollab}
+                    onChange={() => setIncludeOthers((val) => !val)}
+                />}
+                label={t("process.configure.includeOthers")}
+            />
+        </FormGroup>
+    );
+
     return (
         <Fragment>
-            <FormGroup row className={classes.formGroup}>
-                <FormControlLabel
-                    control={<Switch
-                        checked={includePublic}
-                        onChange={() => setIncludePublic((val) => !val)}
-                    />}
-                    label={t("process.configure.includePublic")}
-                />
-                <FormControlLabel
-                    control={<Switch
-                        checked={includeCollab}
-                        onChange={() => setIncludeCollab((val) => {
-                            const newVal = !val;
-                            if (!newVal) {
-                                setIncludeOthers(false);
-                            }
-                            return newVal;
-                        })}
-                    />}
-                    label={t("process.configure.includeCollaborative")}
-                />
-                <FormControlLabel
-                    control={<Switch
-                        checked={includeOthers}
-                        disabled={!includeCollab}
-                        onChange={() => setIncludeOthers((val) => !val)}
-                    />}
-                    label={t("process.configure.includeOthers")}
-                />
-            </FormGroup>
-            <UpdatePlaylistsDialog replacements={replacements}/>
-            <Typography variant="h2">
-                {t("process.configure.listTitle")}
-            </Typography>
+            {compactFilters
+                ? (<Fragment>
+                    <IconButton
+                        className={classes.filterButton}
+                        onClick={() => setFiltersExpanded((val) => !val)}
+                    >
+                        {filtersExpanded ? <Close/> : <Tune/>}
+                    </IconButton>
+                    <Collapse className={classes.filters} in={filtersExpanded}>
+                        <FormButtons/>
+                    </Collapse>
+                </Fragment>)
+                : (<FormButtons className={classes.filters}/>)
+            }
+            <UpdatePlaylistsDialog ButtonProps={{className: classes.updateButton}} replacements={replacements}/>
             <PlaylistList
                 data={swappablePlaylists}
                 excludedPlaylists={excludedPlaylists}
@@ -130,6 +165,7 @@ export const ConfigurePage = () => {
             <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress/>
             </Backdrop>
+            <Notifications/>
         </Fragment>
     );
 };

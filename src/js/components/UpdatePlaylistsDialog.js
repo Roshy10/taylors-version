@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {replaceAll} from "../actions/ReplacementActions";
 import {playlist} from "../types";
 
-const UpdatePlaylistsDialog = ({replacements}) => {
+const UpdatePlaylistsDialog = ({ButtonProps, replacements}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -29,6 +29,7 @@ const UpdatePlaylistsDialog = ({replacements}) => {
                 disabled={replacements.length < 1}
                 onClick={() => setDialogOpen(true)}
                 variant="contained"
+                {...ButtonProps}
             >
                 {t("process.update.openDialogButton")}
             </Button>
@@ -56,6 +57,7 @@ const UpdatePlaylistsDialog = ({replacements}) => {
 };
 
 UpdatePlaylistsDialog.propTypes = {
+    ButtonProps: PropTypes.object,
     replacements: PropTypes.arrayOf(playlist),
 };
 

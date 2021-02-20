@@ -19,7 +19,6 @@ export const deleteTracks = (playlistId, trackUris) => deleteRequest(
     {tracks: trackUris.map((uri) => ({uri}))},
 );
 
-// TODO make this show a notification or something
 export const replacementFailure = () => ({
     type: "REPLACEMENT/FAILED",
 });

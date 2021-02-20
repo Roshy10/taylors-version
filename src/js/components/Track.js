@@ -1,4 +1,4 @@
-import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
+import {ListItem, ListItemIcon, ListItemText, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import React, {Fragment} from "react";
@@ -9,6 +9,9 @@ import MediaArtwork from "./MediaArtwork";
 const useStyles = makeStyles((theme) => ({
     nested: {
         paddingLeft: theme.spacing(6),
+        [theme.breakpoints.down("xs")]: {
+            paddingLeft: theme.spacing(3),
+        },
     },
     trackText: {
         flex: "1 1 50%",
@@ -17,12 +20,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Track = ({data}) => {
     const classes = useStyles();
+    const showTrackArt = !useMediaQuery((theme) => theme.breakpoints.down("xs"));
     const replacementTracks = useSelector(state => state.TrackReducer.tracks);
     const replacementTrack = replacementTracks && replacementTracks[data.replacement];
 
     return (
         <ListItem className={classes.nested} key={data.uri}>
-            <MediaArtwork externalUrls={data.external_urls} images={data.album && data.album.images}/>
+            {showTrackArt && <MediaArtwork externalUrls={data.external_urls} images={data.album && data.album.images}/>}
             <ListItemText className={classes.trackText} primary={data.name} secondary={data.album && data.album.name}/>
 
             {replacementTrack && (
@@ -30,10 +34,10 @@ const Track = ({data}) => {
                     <ListItemIcon>
                         <ArrowRightAltIcon/>
                     </ListItemIcon>
-                    <MediaArtwork
+                    {showTrackArt && <MediaArtwork
                         externalUrls={replacementTrack.external_urls}
                         images={replacementTrack.album && replacementTrack.album.images}
-                    />
+                    />}
                     <ListItemText
                         className={classes.trackText}
                         primary={replacementTrack.name}

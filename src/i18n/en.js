@@ -13,6 +13,7 @@ const en = {
                 includePublic: "Your Public playlists",
                 includeCollaborative: "Your Collaborative Playlists",
                 includeOthers: "Other's Collaborative Playlists",
+                noneFound: "Looks like your playlists are already Taylorized!",
             },
             update: {
                 openDialogButton: "Update Playlists",

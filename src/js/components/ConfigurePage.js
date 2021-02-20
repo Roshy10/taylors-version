@@ -1,4 +1,4 @@
-import {Backdrop, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, useMediaQuery} from "@material-ui/core";
+import {Backdrop, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Close, Tune} from "@material-ui/icons";
 import clsx from "clsx";
@@ -35,6 +35,13 @@ const useStyles = makeStyles((theme) => ({
     formGroup: {
         [theme.breakpoints.down("md")]: {
             marginTop: theme.spacing(1),
+        },
+    },
+    noneFound: {
+        fontSize: "2rem",
+        textAlign: "center",
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "1.5rem",
         },
     },
     backdrop: {
@@ -157,11 +164,16 @@ export const ConfigurePage = () => {
                 : (<FormButtons className={classes.filters}/>)
             }
             <UpdatePlaylistsDialog ButtonProps={{className: classes.updateButton}} replacements={replacements}/>
-            <PlaylistList
-                data={swappablePlaylists}
-                excludedPlaylists={excludedPlaylists}
-                toggleExcludedPlaylist={toggleExcludedPlaylist}
-            />
+            {(swappablePlaylists.length > 0 || loading)
+                ? <PlaylistList
+                    data={swappablePlaylists}
+                    excludedPlaylists={excludedPlaylists}
+                    toggleExcludedPlaylist={toggleExcludedPlaylist}
+                />
+                : <Typography className={classes.noneFound}>
+                    {t("process.configure.noneFound")}
+                </Typography>
+            }
             <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress/>
             </Backdrop>

@@ -2,6 +2,7 @@ import {buffers} from "@redux-saga/core";
 import {chunk, reverse, sortBy, uniq} from "lodash";
 import {actionChannel, all, call, delay, put, race, take, takeEvery} from "redux-saga/effects";
 import {showSnackbar} from "../actions/NotificationActions";
+import {getPlaylists, purgePlaylists} from "../actions/PlaylistActions";
 import {deleteTracks, insertTrack, replacementFailure} from "../actions/ReplacementActions";
 import {makeRequest} from "./HttpSaga";
 
@@ -63,6 +64,12 @@ function* dispatchReplacements(action) {
         success: delay(250),
         error: take(requestChan),
     });
+
+    // empty out the playlists we have saved from the store
+    yield put(purgePlaylists());
+
+    // re-fetch the latest state of the user's playlists
+    yield put(getPlaylists());
 
     if (success) {
         process.env.NODE_ENV !== "production" && console.log("playlist updating complete");

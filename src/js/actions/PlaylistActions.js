@@ -29,6 +29,10 @@ const storePlaylistTracks = (tracks, action) => ({
     },
 });
 
+export const purgePlaylists = () => ({
+    type: "PLAYLIST/PURGE",
+});
+
 // this will mark the request as loading and then send it
 // the purpose is to prevent sending a second request while the first one is still in-flight
 // which happens if getAllTracksForPlaylists is call in very quick succession

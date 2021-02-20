@@ -1,6 +1,8 @@
 import {assign, concat, findIndex, isArray, uniqBy} from "lodash";
 import spotify from "../../mappings/spotify";
 
+const defaultState = {playlists: []};
+
 const PlaylistReducer = (state = {playlists: []}, action) => {
     switch (action.type) {
 
@@ -43,6 +45,10 @@ const PlaylistReducer = (state = {playlists: []}, action) => {
             newState.playlists[targetPlaylistIndex].tracks = "loading";
 
             return newState;
+        }
+
+        case "PLAYLIST/PURGE": {
+            return defaultState;
         }
 
         default:

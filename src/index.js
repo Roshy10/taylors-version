@@ -1,12 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import {BrowserRouter as HashRouter} from "react-router-dom";
+import {hydrate, render} from "react-dom";
 import "./i18n";
-import App from "./js/App";
+import Landing from "./js/Landing";
 
 const wrapper = document.getElementById("container");
-wrapper ? ReactDOM.render(
-    <HashRouter basename="/#">
-        <App/>
-    </HashRouter>
-    , wrapper) : false;
+if (wrapper.hasChildNodes()) {
+    hydrate(<Landing/>, wrapper);
+} else {
+    render(<Landing/>, wrapper);
+}

@@ -29,7 +29,7 @@ export const SpotifyTokenButton = (props) => {
         const authorizeParams = url.searchParams;
         authorizeParams.append("client_id", clientId);
         authorizeParams.append("response_type", "token");
-        authorizeParams.append("redirect_uri", config.appUrl);
+        authorizeParams.append("redirect_uri", `${config.appUrl}/spotify`);
         authorizeParams.append("state", state);
         authorizeParams.append("scope", permissionScopes.join(" "));
         return url.toString();

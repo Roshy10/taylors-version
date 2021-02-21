@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
     externals: {
@@ -11,14 +12,14 @@ module.exports = {
         rules: [
             {
                 /*
-                * pass all javascript files through babel
-                * this compiles the JSX and converts ES6 code into regular JS
-                */
+                 * pass all javascript files through babel
+                 * this compiles the JSX and converts ES6 code into regular JS
+                 */
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                }
+                },
             },
             {
                 test: /\.html$/,
@@ -28,20 +29,32 @@ module.exports = {
                     },
                 ],
             },
-        ]
+        ],
     },
     /*
-    * specify how the final JS is injected into the html document
-    */
+     * specify how the final JS is injected into the html document
+     */
     plugins: [
+        new BundleAnalyzerPlugin(),
         new HtmlWebPackPlugin({
+            chunks: ["landing"],
             template: "./src/index.html",
-            filename: "./index.html"
-        })
+            filename: "./index.html",
+        }),
+        new HtmlWebPackPlugin({
+            chunks: ["app"],
+            template: "./src/index.html",
+            filename: "./spotify/index.html",
+        }),
     ],
     entry: {
-        main: ["babel-polyfill", "./src/index.js"],
-        //vendor: ["react"]
+        landing: ["babel-polyfill", "./src/index.js"],
+        app: ["babel-polyfill", "./src/spotify.js"],
+    },
+    optimization: {
+        splitChunks: {
+            chunks: "all",
+        },
     },
     devServer: {
         // start development server on the specified port

@@ -6,8 +6,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="@types/react-dom" level="application" />
-    <orderEntry type="library" name="@types/react" level="application" />
-    <orderEntry type="library" name="@types/material-ui" level="application" />
+    <orderEntry type="library" name="@types/enzyme" level="application" />
+    <orderEntry type="library" name="@types/enzyme-adapter-react-16" level="application" />
+    <orderEntry type="library" name="@types/jasmine" level="application" />
+    <orderEntry type="library" name="@types/jasmine-enzyme" level="application" />
+    <orderEntry type="library" name="@types/karma-jasmine" level="application" />
+    <orderEntry type="library" name="@types/jasmine-matchers" level="application" />
+    <orderEntry type="library" name="@types/karma" level="application" />
   </component>
 </module>

@@ -1,7 +1,7 @@
 import {green, purple} from "@material-ui/core/colors";
 import {createMuiTheme} from "@material-ui/core/styles";
 
-const index = createMuiTheme({
+const theme = createMuiTheme({
     palette: {
         primary: {
             main: purple[500],
@@ -17,4 +17,4 @@ const index = createMuiTheme({
     },
 });
 
-export default index;
+export default theme;

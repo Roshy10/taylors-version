@@ -1,4 +1,4 @@
-import {Backdrop, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
+import {Backdrop, CircularProgress, Collapse, Container, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Close, Tune} from "@material-ui/icons";
 import clsx from "clsx";
@@ -6,11 +6,10 @@ import {concat, includes, isArray, without} from "lodash";
 import React, {Fragment, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
-import {Redirect} from "react-router-dom";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
-import useAuthToken from "../hooks/useAuthToken";
 import Notifications from "./Notifications";
 import PlaylistList from "./PlaylistList";
+import TopBar from "./TopBar";
 import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +53,6 @@ export const ConfigurePage = () => {
     const {t} = useTranslation();
     const classes = useStyles();
     const compactFilters = useMediaQuery((theme) => theme.breakpoints.down("md"));
-    const token = useAuthToken();
     const dispatch = useDispatch();
     const playlists = useSelector(state => state.PlaylistReducer.playlists);
     const userId = useSelector(state => state.AuthReducer.id);
@@ -102,11 +100,6 @@ export const ConfigurePage = () => {
         // strip off the playlists the user has excluded
         .filter((playlist) => !includes(excludedPlaylists, playlist.id));
 
-    if (!token) {
-        // token isn't valid, back to home screen
-        return <Redirect to="/"/>;
-    }
-
     const toggleExcludedPlaylist = (playlistId) => {
         setExcludedPlaylists(prevState => includes(excludedPlaylists, playlistId)
             ? without(prevState, playlistId)
@@ -149,35 +142,38 @@ export const ConfigurePage = () => {
 
     return (
         <Fragment>
-            {compactFilters
-                ? (<Fragment>
-                    <IconButton
-                        className={classes.filterButton}
-                        onClick={() => setFiltersExpanded((val) => !val)}
-                    >
-                        {filtersExpanded ? <Close/> : <Tune/>}
-                    </IconButton>
-                    <Collapse className={classes.filters} in={filtersExpanded}>
-                        <FormButtons/>
-                    </Collapse>
-                </Fragment>)
-                : (<FormButtons className={classes.filters}/>)
-            }
-            <UpdatePlaylistsDialog ButtonProps={{className: classes.updateButton}} replacements={replacements}/>
-            {(swappablePlaylists.length > 0 || loading)
-                ? <PlaylistList
-                    data={swappablePlaylists}
-                    excludedPlaylists={excludedPlaylists}
-                    toggleExcludedPlaylist={toggleExcludedPlaylist}
-                />
-                : <Typography className={classes.noneFound}>
-                    {t("process.configure.noneFound")}
-                </Typography>
-            }
-            <Backdrop className={classes.backdrop} open={loading}>
-                <CircularProgress/>
-            </Backdrop>
-            <Notifications/>
+            <TopBar/>
+            <Container fixed>
+                {compactFilters
+                    ? (<Fragment>
+                        <IconButton
+                            className={classes.filterButton}
+                            onClick={() => setFiltersExpanded((val) => !val)}
+                        >
+                            {filtersExpanded ? <Close/> : <Tune/>}
+                        </IconButton>
+                        <Collapse className={classes.filters} in={filtersExpanded}>
+                            <FormButtons/>
+                        </Collapse>
+                    </Fragment>)
+                    : (<FormButtons className={classes.filters}/>)
+                }
+                <UpdatePlaylistsDialog ButtonProps={{className: classes.updateButton}} replacements={replacements}/>
+                {(swappablePlaylists.length > 0 || loading)
+                    ? <PlaylistList
+                        data={swappablePlaylists}
+                        excludedPlaylists={excludedPlaylists}
+                        toggleExcludedPlaylist={toggleExcludedPlaylist}
+                    />
+                    : <Typography className={classes.noneFound}>
+                        {t("process.configure.noneFound")}
+                    </Typography>
+                }
+                <Backdrop className={classes.backdrop} open={loading}>
+                    <CircularProgress/>
+                </Backdrop>
+                <Notifications/>
+            </Container>
         </Fragment>
     );
 };

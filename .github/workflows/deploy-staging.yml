@@ -40,7 +40,7 @@ jobs:
         uses: youyo/aws-cdk-github-actions@v2
         with:
           cdk_subcommand: deploy
-          cdk_args: --require-approval never -c domain=staging.${{ secrets.APP_DOMAIN }}
+          cdk_args: --require-approval never -c domain=staging.${{ secrets.APP_DOMAIN }} --app "node index"
           actions_comment: false
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

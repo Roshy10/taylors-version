@@ -14,12 +14,12 @@ jobs:
       - name: Build app
         env:
           APP_URL: https://staging.${{ secrets.APP_DOMAIN }}
-        run: npm build
+        run: npm run build
       - name: Push build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts
-          path: dist/
+          path: dist
   deploy:
     runs-on: ubuntu-latest
     steps:

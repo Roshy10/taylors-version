@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import cdk = require('@aws-cdk/core');
 import {StaticSite} from '../lib/cdk-stack';
+import {Tags} from '@aws-cdk/core';
 
 /**
  * This stack relies on getting the domain name from CDK context.
@@ -25,12 +26,14 @@ class MyStaticSiteStack extends cdk.Stack {
 
 const app = new cdk.App();
 
-new MyStaticSiteStack(app, 'MyStaticSite', {
+const stack = new MyStaticSiteStack(app, 'MyStaticSite', {
     env: {
         // Stack must be in us-east-1, because the ACM certificate for a
         // global CloudFront distribution must be requested in us-east-1.
         region: 'us-east-1'
     }
 });
+
+Tags.of(stack).add('project', "taylors-version")
 
 app.synth();

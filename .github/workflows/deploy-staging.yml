@@ -20,7 +20,9 @@ jobs:
         with:
           name: build-artifacts
           path: dist
+          if-no-files-found: error
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source

@@ -13,7 +13,7 @@ jobs:
         run: npm ci
       - name: Build app
         env:
-          APP_URL: https://staging.${{ secrets.APP_DOMAIN }}
+          APP_URL: https://staging.taylors-version.com
         run: npm run build
       - name: Push build artifacts
         uses: actions/upload-artifact@v2
@@ -43,4 +43,6 @@ jobs:
           npm install
           npm run build
       - name: Deploy CF Stack
-        run: ./node_modules/.bin/cdk deploy -c domain=staging.${{ secrets.APP_DOMAIN }} --require-approval never
+        run: |
+          ls
+          ./node_modules/.bin/cdk deploy -c domain=staging.taylors-version.com --require-approval never

@@ -31,6 +31,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-artifacts
+          path: dist
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -40,9 +41,9 @@ jobs:
       - name: Install and build CDK
         run: |
           cd ./cdk
-          npm install
+          npm ci
           npm run build
       - name: Deploy CF Stack
         run: |
-          ls
-          ./node_modules/.bin/cdk deploy -c domain=staging.taylors-version.com --require-approval never
+          ls -l
+          ./cdk deploy -c domain=staging.taylors-version.com --require-approval never

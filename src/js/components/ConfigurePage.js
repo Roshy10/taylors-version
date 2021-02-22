@@ -13,6 +13,12 @@ import TopBar from "./TopBar";
 import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
 const useStyles = makeStyles((theme) => ({
+    container: {
+        marginTop: theme.spacing(1),
+        [theme.breakpoints.down("sm")]: {
+            marginTop: 0,
+        },
+    },
     filterButton: {
         float: "right",
     },
@@ -39,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     noneFound: {
         fontSize: "2rem",
         textAlign: "center",
+        marginTop: theme.spacing(1),
         [theme.breakpoints.down("xs")]: {
             fontSize: "1.5rem",
         },
@@ -107,6 +114,7 @@ export const ConfigurePage = () => {
         );
     };
 
+    // eslint-disable-next-line react/prop-types
     const FormButtons = ({className}) => (
         <FormGroup row className={clsx(className, classes.filters)}>
             <FormControlLabel
@@ -143,7 +151,10 @@ export const ConfigurePage = () => {
     return (
         <Fragment>
             <TopBar/>
-            <Container fixed>
+            <Container
+                fixed
+                className={classes.container}
+            >
                 {compactFilters
                     ? (<Fragment>
                         <IconButton

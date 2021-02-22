@@ -5,9 +5,13 @@ const useAuthToken = () => {
     const token = useSelector(state => state.AuthReducer.token);
     const tokenExpiration = useSelector(state => state.AuthReducer.expiryTime);
 
-    const tokenValid = !isEmpty(token) && tokenExpiration > Date.now();
+    const tokenExpired = tokenExpiration <= Date.now();
+    const tokenValid = !isEmpty(token) && !tokenExpired;
 
-    return tokenValid && token;
+    return {
+        token,
+        tokenValid,
+    };
 };
 
 export default useAuthToken;

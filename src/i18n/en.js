@@ -1,12 +1,18 @@
+const NBSP = "\u00A0";
+
 const en = {
     taylorsVersion: {
-        appName: "(Taylor's Version)",
+        appName: "Taylor's Version",
         authorize: {
             startButton: "Sign in",
             success: "account authorised successfully",
         },
         landing: {
-            start: "Get Started"
+            message: `Update your Spotify playlists to use the latest (Taylor's${NBSP}Version)`,
+            messageTwo: "Support Taylor Swift in her fight to own her own music.",
+            github: "Github",
+            donate: "Donate",
+            legal: "Legal",
         },
         process: {
             configure: {

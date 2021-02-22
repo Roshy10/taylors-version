@@ -1,5 +1,4 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
     externals: {
@@ -23,11 +22,19 @@ module.exports = {
             },
             {
                 test: /\.html$/,
-                use: [
-                    {
-                        loader: "html-loader",
-                    },
-                ],
+                use: {
+                    loader: "html-loader",
+                },
+            },
+            {
+                //IMAGE LOADER
+                test: /\.(jpe?g|png|gif|svg|webp)$/i,
+                loader: "file-loader",
+                options: {
+                    limit: 8000,
+                    name: "images/[hash]-[name].[ext]",
+                    publicPath: "assets",
+                },
             },
         ],
     },
@@ -35,7 +42,6 @@ module.exports = {
      * specify how the final JS is injected into the html document
      */
     plugins: [
-        new BundleAnalyzerPlugin(),
         new HtmlWebPackPlugin({
             chunks: ["landing"],
             template: "./src/index.html",

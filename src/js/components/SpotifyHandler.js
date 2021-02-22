@@ -14,7 +14,7 @@ const SpotifyHandler = () => {
     const dispatch = useDispatch();
 
     const [state] = useStickyState("spotifyState");
-    const token = useAuthToken();
+    const {token, tokenValid} = useAuthToken();
 
     // detect incoming token
     const responseSearch = window.location.search && queryString.parse(window.location.search);
@@ -22,7 +22,7 @@ const SpotifyHandler = () => {
     const accessToken = responseHash && responseHash.access_token;
 
     // check the response was good
-    if ((accessToken && state !== responseHash.state) || !isEmpty(responseSearch.error)) {
+    if ((accessToken && state !== responseHash.state) || !isEmpty(responseSearch.error) || (!accessToken && !tokenValid)) {
         // returned token didn't match the token we have saved, likely the original API request didn't originate from this site.
         // or there was an error in the OAuth flow, the user probably declined the permissions
 
@@ -32,13 +32,16 @@ const SpotifyHandler = () => {
 
     useEffect(() => {
         // save incoming token with expiration time
-        if (accessToken !== token && !isEmpty(accessToken)) {
+        if (accessToken !== token && !isEmpty(accessToken) && !tokenValid) {
             // a new token has just been received
             dispatch(storeToken(accessToken, Date.now() + (responseHash.expires_in * 1000)));
+
+            // clear the hash from the url, this helps prevent auth issues if the user re-opens the page after the token has expired
+            window.location.hash = "";
         }
     }, [accessToken]);
 
-    return token && <ConfigurePage/>;
+    return token ? <ConfigurePage/> : null;
 };
 
 export default SpotifyHandler;

@@ -43,10 +43,9 @@ export const SpotifyTokenButton = (props) => {
 
     return (
         <Button
-            color="primary"
             endIcon={<SpotifyIcon/>}
             href={authUrl}
-            variant="contained"
+            variant="outlined"
             {...props}
         >
             {t("authorize.startButton")}

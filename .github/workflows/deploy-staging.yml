@@ -1,0 +1,44 @@
+name: Deploy Staging
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build app
+        env:
+          APP_URL: https://staging.${{ secrets.APP_DOMAIN }}
+        run: npm build
+      - name: Push build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: dist/
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Install and build CDK
+        run: |
+          cd ./cdk
+          npm install -g aws-cdk
+          npm install
+          npm run build
+      - name: Deploy CF Stack
+        run: cdk deploy -c domain=staging.${{ secrets.APP_DOMAIN }}

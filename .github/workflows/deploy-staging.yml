@@ -31,17 +31,19 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-artifacts
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
       - name: Install and build CDK
         run: |
           cd ./cdk
           npm install -g aws-cdk
           npm install
           npm run build
-      - name: Deploy CF Stack
-        run: cdk deploy -c domain=staging.${{ secrets.APP_DOMAIN }}
+      - name: cdk deploy
+        uses: youyo/aws-cdk-github-actions@v2
+        with:
+          cdk_subcommand: deploy
+          cdk_args: --require-approval never -c domain=staging.${{ secrets.APP_DOMAIN }}
+          actions_comment: false
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1

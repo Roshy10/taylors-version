@@ -26,7 +26,7 @@ class MyStaticSiteStack extends cdk.Stack {
 
 const app = new cdk.App();
 
-const stack = new MyStaticSiteStack(app, 'MyStaticSite', {
+const stack = new MyStaticSiteStack(app, 'TaylorsVersion', {
     env: {
         // Stack must be in us-east-1, because the ACM certificate for a
         // global CloudFront distribution must be requested in us-east-1.

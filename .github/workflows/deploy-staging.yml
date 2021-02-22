@@ -34,7 +34,6 @@ jobs:
       - name: Install and build CDK
         run: |
           cd ./cdk
-          npm install -g aws-cdk
           npm install
           npm run build
       - name: cdk deploy

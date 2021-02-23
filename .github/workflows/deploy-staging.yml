@@ -45,7 +45,8 @@ jobs:
           npm ci
           npm run build
       - name: Add CDK to PATH
-        run: echo "$HOME/cdk/node_modules/.bin" >> $GITHUB_PATH
+        working-directory: cdk
+        run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
       - name: Test PATH
         working-directory: cdk
         run: |

@@ -40,13 +40,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
       - name: Install and build CDK
+        working-directory: cdk
         run: |
-          cd ./cdk
           npm ci
           npm run build
+      - name: Add CDK to PATH
+        run: echo "$HOME/cdk/node_modules/.bin" >> $GITHUB_PATH
+      - name: Bootstrap CDK
+        working-directory: cdk
+        run: cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1
       - name: Deploy CF Stack
+        working-directory: cdk
         env:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
-        run: |
-          cd ./cdk
-          ./node_modules/.bin/cdk deploy -c domain=taylors-version.com -c subdomain=staging --require-approval never
+          CDK_DEPLOY_REGION: eu-west-1
+        run: cdk deploy -c domain=taylors-version.com -c subdomain=staging --require-approval never

@@ -31,7 +31,7 @@ const stack = new MyStaticSiteStack(app, 'TaylorsVersion', {
     env: {
         // Stack must be in us-east-1, because the ACM certificate for a
         // global CloudFront distribution must be requested in us-east-1.
-        region: 'eu-west-1',
+        region: process.env.CDK_DEPLOY_REGION,
         account: process.env.CDK_DEPLOY_ACCOUNT
     }
 });

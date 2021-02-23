@@ -46,5 +46,4 @@ jobs:
       - name: Deploy CF Stack
         run: |
           cd ./cdk
-          ls -l
           ./node_modules/.bin/cdk deploy -c domain=staging.taylors-version.com --require-approval never

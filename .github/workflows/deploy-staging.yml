@@ -44,6 +44,8 @@ jobs:
           npm ci
           npm run build
       - name: Deploy CF Stack
+        env:
+          CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
         run: |
           cd ./cdk
           ./node_modules/.bin/cdk deploy -c domain=staging.taylors-version.com --require-approval never

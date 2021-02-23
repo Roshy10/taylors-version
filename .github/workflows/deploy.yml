@@ -65,15 +65,17 @@ jobs:
         env:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CDK_DEPLOY_REGION: eu-west-1
+          PROD: false
         run: |
           cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1 -c domain=taylors-version.com -c subdomain=staging
-          cdk deploy -c domain=taylors-version.com -c subdomain=staging --require-approval never
+          cdk deploy TaylorsVersionStaging -c domain=taylors-version.com -c subdomain=staging --require-approval never
       - name: Deploy stack Prod
         if: github.ref == 'refs/heads/master'
         working-directory: cdk
         env:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CDK_DEPLOY_REGION: eu-west-1
+          PROD: true
         run: |
           cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1 -c domain=taylors-version.com
-          cdk deploy -c domain=taylors-version.com --require-approval never
+          cdk deploy TaylorsVersionProd -c domain=taylors-version.com --require-approval never

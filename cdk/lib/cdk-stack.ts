@@ -81,6 +81,7 @@ export class StaticSite extends Construct {
             destinationBucket: siteBucket,
             distribution,
             distributionPaths: ['/*'],
+            retainOnDelete: false
         });
     }
 }

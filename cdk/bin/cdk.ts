@@ -14,7 +14,7 @@ import {Tags} from '@aws-cdk/core';
  *   }
  * }
  **/
-class MyStaticSiteStack extends cdk.Stack {
+class TaylorsVersionSiteStack extends cdk.Stack {
     constructor(parent: cdk.App, name: string, props: cdk.StackProps) {
         super(parent, name, props);
 
@@ -27,15 +27,20 @@ class MyStaticSiteStack extends cdk.Stack {
 
 const app = new cdk.App();
 
-const stack = new MyStaticSiteStack(app, 'TaylorsVersion', {
+const prodStack = new TaylorsVersionSiteStack(app, 'TaylorsVersionProd', {
     env: {
-        // Stack must be in us-east-1, because the ACM certificate for a
-        // global CloudFront distribution must be requested in us-east-1.
         region: process.env.CDK_DEPLOY_REGION,
         account: process.env.CDK_DEPLOY_ACCOUNT
     }
 });
+Tags.of(prodStack).add('project', "taylors-version")
 
-Tags.of(stack).add('project', "taylors-version")
+const stagingStack = new TaylorsVersionSiteStack(app, 'TaylorsVersionStaging', {
+    env: {
+        region: process.env.CDK_DEPLOY_REGION,
+        account: process.env.CDK_DEPLOY_ACCOUNT
+    }
+});
+Tags.of(stagingStack).add('project', "taylors-version")
 
 app.synth();

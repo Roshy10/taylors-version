@@ -26,16 +26,6 @@ module.exports = {
                     loader: "html-loader",
                 },
             },
-            {
-                //IMAGE LOADER
-                test: /\.(jpe?g|png|gif|svg|webp)$/i,
-                loader: "file-loader",
-                options: {
-                    limit: 8000,
-                    name: "images/[hash]-[name].[ext]",
-                    publicPath: "assets",
-                },
-            },
         ],
     },
     /*
@@ -44,6 +34,7 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             chunks: ["landing"],
+            favicon: "./src/assets/favicon.ico",
             template: "./src/index.html",
             filename: "./index.html",
         }),

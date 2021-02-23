@@ -36,6 +36,7 @@ export class StaticSite extends Construct {
             bucketName: siteDomain,
             websiteIndexDocument: 'index.html',
             publicReadAccess: true,
+            removalPolicy: cdk.RemovalPolicy.DESTROY
         });
         new cdk.CfnOutput(this, 'Bucket', {value: siteBucket.bucketName});
 

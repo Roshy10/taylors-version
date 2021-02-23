@@ -20,6 +20,7 @@ class MyStaticSiteStack extends cdk.Stack {
 
         new StaticSite(this, 'StaticSite', {
             domainName: this.node.tryGetContext('domain'),
+            siteSubDomain: this.node.tryGetContext('subdomain'),
         });
     }
 }

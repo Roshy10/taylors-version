@@ -10,6 +10,7 @@ import {Construct} from '@aws-cdk/core';
 
 export interface StaticSiteProps {
     domainName: string;
+    siteSubDomain: string;
 }
 
 /**
@@ -25,7 +26,9 @@ export class StaticSite extends Construct {
         super(parent, name);
 
         const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: props.domainName});
-        const siteDomain = props.domainName;
+        const siteDomain = props.siteSubDomain
+            ? props.siteSubDomain + '.' + props.domainName
+            : props.domainName;
         new cdk.CfnOutput(this, 'Site', {value: 'https://' + siteDomain});
 
         // Content bucket

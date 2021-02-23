@@ -49,4 +49,4 @@ jobs:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
         run: |
           cd ./cdk
-          ./node_modules/.bin/cdk deploy -c domain=staging.taylors-version.com --require-approval never
+          ./node_modules/.bin/cdk deploy -c domain=taylors-version.com -c subdomain=staging --require-approval never

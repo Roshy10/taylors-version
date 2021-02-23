@@ -54,6 +54,9 @@ jobs:
           echo "$PATH"
       - name: Bootstrap CDK
         working-directory: cdk
+        env:
+          CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
+          CDK_DEPLOY_REGION: eu-west-1
         run: cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1
       - name: Deploy CF Stack
         working-directory: cdk

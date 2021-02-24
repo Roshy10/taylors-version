@@ -6,6 +6,17 @@ on:
       - develop
       - master
 jobs:
+  static-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm ci
+      - name: eslint
+        run: npm run lint
+      - name: check language files
+        run: npm run verify-i18n
   build:
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +49,7 @@ jobs:
   deploy:
     needs:
       - build
+      - static-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source

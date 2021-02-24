@@ -52,6 +52,7 @@ function* dispatchPlaylistReplacement(playlist) {
 function* dispatchReplacements(action) {
     // FIXME I'm certain there must be a better way to deal with request errors
     //  please raise an issue or PR if you know how to make it suck less
+    //  https://github.com/Roshy10/taylors-version/issues/5
 
     // start listening for failure actions
     const requestChan = yield actionChannel(replacementFailure().type, buffers.dropping(1));

@@ -17,11 +17,13 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         env:
           APP_URL: https://staging.taylors-version.com
+          CLIENT_ID: 8c8f303eba3b4e1bab345f245d4b1036
         run: npm run build
       - name: Build app Prod
         if: github.ref == 'refs/heads/master'
         env:
           APP_URL: https://taylors-version.com
+          CLIENT_ID: 1b5718d03b174bfb8988f14bfac422a6
         run: npm run build
       - name: Push build artifacts
         uses: actions/upload-artifact@v2

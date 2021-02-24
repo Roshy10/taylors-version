@@ -5,6 +5,7 @@ module.exports = {
         // global app config object
         config: JSON.stringify({
             appUrl: process.env.APP_URL,
+            clientId: process.env.CLIENT_ID,
         }),
     },
     module: {

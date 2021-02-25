@@ -1,7 +1,6 @@
 name: Performance checks
 on:
   - pull_request
-  - push
 jobs:
   build:
     runs-on: ubuntu-latest

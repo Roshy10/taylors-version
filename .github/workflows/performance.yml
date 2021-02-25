@@ -1,0 +1,48 @@
+name: Performance checks
+on:
+  - pull_request
+  - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Use Node.js 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build app Staging
+        env:
+          APP_URL: http://localhost
+          CLIENT_ID: 8c8f303eba3b4e1bab345f245d4b1036
+        run: npm run build
+      - name: Push build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: dist
+          if-no-files-found: error
+  test-performance:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts
+          path: dist
+      - name: Use Node.js 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+      - name: run Lighthouse CI
+        env:
+          LHCI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install -g @lhci/cli@0.7.x
+          lhci autorun

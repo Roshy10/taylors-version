@@ -1,7 +1,10 @@
 name: Deploy
 on:
-  - workflow_dispatch
-  - push
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +24,7 @@ jobs:
           CLIENT_ID: 8c8f303eba3b4e1bab345f245d4b1036
         run: npm run build
       - name: Build app Prod
-        if: github.ref != 'refs/heads/develop'
+        if: github.ref == 'refs/heads/master'
         env:
           APP_URL: https://taylors-version.com
           CLIENT_ID: 1b5718d03b174bfb8988f14bfac422a6
@@ -32,27 +35,7 @@ jobs:
           name: build-artifacts
           path: dist
           if-no-files-found: error
-  test-performance:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v2
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifacts
-          path: dist
-      - name: Use Node.js 13.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 13.x
-      - name: run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli@0.7.x
-          lhci autorun
   deploy:
-    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master'
     needs:
       - build
       - test-performance

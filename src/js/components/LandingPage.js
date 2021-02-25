@@ -1,11 +1,9 @@
-import {Box, CircularProgress, Typography} from "@material-ui/core";
+import {Box, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import React, {Fragment, lazy, Suspense} from "react";
+import React, {Fragment} from "react";
 import {useTranslation} from "react-i18next";
-
-// Lazy-load large, visually insignificant elements
-const SpotifyTokenButton = lazy(() => import("./SpotifyTokenButton"));
-const Footer = lazy(() => import("./Footer"));
+import Footer from "./Footer";
+import SpotifyTokenButton from "./SpotifyTokenButton";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -39,14 +37,13 @@ const useStyles = makeStyles((theme) => ({
             width: "80%",
         },
     },
-    buttonLoader: {
+    messageContainer: {
         color: theme.palette.common.white,
-    },
-    message: {
-        color: theme.palette.common.white,
-        //marginTop: theme.spacing(3),
         textAlign: "center",
         maxWidth: "90%",
+    },
+    message: {
+        margin: theme.spacing(2, 0),
     },
     footer: {
         position: "absolute",
@@ -75,23 +72,15 @@ export const LandingPage = () => {
                     >
                         {t("appName")}
                     </Typography>
-                    <Suspense fallback={<CircularProgress className={classes.buttonLoader}/>}>
-                        <SpotifyTokenButton
-                            className={classes.button}
-                        />
-                    </Suspense>
-                    <Typography className={classes.message}>
-                        {t("landing.message")}
-                        <br/>
-                        <br/>
-                        {t("landing.messageTwo")}
-                    </Typography>
+                    <SpotifyTokenButton className={classes.button}/>
+                    <Box className={classes.messageContainer}>
+                        <Typography className={classes.message}>{t("landing.message")}</Typography>
+                        <Typography className={classes.message}>{t("landing.messageTwo")}</Typography>
+                    </Box>
                 </Box>
             </Box>
             <Box className={classes.footer}>
-                <Suspense fallback={<CircularProgress className={classes.buttonLoader}/>}>
-                    <Footer/>
-                </Suspense>
+                <Footer/>
             </Box>
         </Fragment>
     );

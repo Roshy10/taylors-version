@@ -1,8 +1,11 @@
-import {Box, Link, Typography} from "@material-ui/core";
+import {Box, CircularProgress, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import React, {Fragment} from "react";
+import React, {Fragment, lazy, Suspense} from "react";
 import {useTranslation} from "react-i18next";
-import SpotifyTokenButton from "./SpotifyTokenButton";
+
+// Lazy-load large, visually insignificant elements
+const SpotifyTokenButton = lazy(() => import("./SpotifyTokenButton"));
+const Footer = lazy(() => import("./Footer"));
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -36,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
             width: "80%",
         },
     },
+    buttonLoader: {
+        color: theme.palette.common.white,
+    },
     message: {
         color: theme.palette.common.white,
         //marginTop: theme.spacing(3),
@@ -53,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
             bottom: theme.spacing(1),
         },
     },
-    footerItem: {
-        color: theme.palette.common.white,
-    },
 }));
 
 export const LandingPage = () => {
@@ -72,9 +75,11 @@ export const LandingPage = () => {
                     >
                         {t("appName")}
                     </Typography>
-                    <SpotifyTokenButton
-                        className={classes.button}
-                    />
+                    <Suspense fallback={<CircularProgress className={classes.buttonLoader}/>}>
+                        <SpotifyTokenButton
+                            className={classes.button}
+                        />
+                    </Suspense>
                     <Typography className={classes.message}>
                         {t("landing.message")}
                         <br/>
@@ -84,15 +89,9 @@ export const LandingPage = () => {
                 </Box>
             </Box>
             <Box className={classes.footer}>
-                <Link href="https://raw.githubusercontent.com/Roshy10/taylors-version/master/LICENSE">
-                    <Typography className={classes.footerItem}>{t("landing.legal")}</Typography>
-                </Link>
-                <Link href="https://github.com/Roshy10/taylors-version">
-                    <Typography className={classes.footerItem}>{t("landing.github")}</Typography>
-                </Link>
-                <Link href="https://ko-fi.com/roshy10">
-                    <Typography className={classes.footerItem}>{t("landing.donate")}</Typography>
-                </Link>
+                <Suspense fallback={<CircularProgress className={classes.buttonLoader}/>}>
+                    <Footer/>
+                </Suspense>
             </Box>
         </Fragment>
     );

@@ -2,7 +2,7 @@ import {includes, isArray} from "lodash";
 import {all, put, select, takeEvery} from "redux-saga/effects";
 import {getPlaylistTracks, requestPlaylistTracks} from "../actions/PlaylistActions";
 
-// searches for playlists which still have an object ih the "tracks" field
+// searches for playlists which still have an object ih the "tracks" field, i.e the ones we still need to get a tracklist for
 // this skips over the ones which are loading, where the tracks field is just the string "loading"
 // it also skips the ones we already have, as these are arrays
 const findTracklessPlaylists = (playlists) => playlists

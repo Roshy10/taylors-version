@@ -7,7 +7,7 @@ import {v4 as uuidv4} from "uuid";
 import useStickyState from "../hooks/useStickyState";
 import SpotifyIcon from "../icons/SpotifyIcon";
 
-const clientId = "1b5718d03b174bfb8988f14bfac422a6";
+const clientId = config.clientId;
 const permissionScopes = [
     // see the items in a user's playlist, and update them
     "playlist-read-private",

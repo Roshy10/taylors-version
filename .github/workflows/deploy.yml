@@ -11,17 +11,23 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
+      - name: Use Node.js 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
       - name: Install Dependencies
         run: npm ci
       - name: Build app Staging
         if: github.ref == 'refs/heads/develop'
         env:
           APP_URL: https://staging.taylors-version.com
+          CLIENT_ID: 8c8f303eba3b4e1bab345f245d4b1036
         run: npm run build
       - name: Build app Prod
         if: github.ref == 'refs/heads/master'
         env:
           APP_URL: https://taylors-version.com
+          CLIENT_ID: 1b5718d03b174bfb8988f14bfac422a6
         run: npm run build
       - name: Push build artifacts
         uses: actions/upload-artifact@v2
@@ -30,7 +36,8 @@ jobs:
           path: dist
           if-no-files-found: error
   deploy:
-    needs: build
+    needs:
+      - build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
@@ -46,19 +53,16 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
+      - name: Use Node.js 13.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
       - name: Install and build CDK
         working-directory: cdk
         run: |
+          npm install -g aws-cdk
           npm ci
           npm run build
-      - name: Add CDK to PATH
-        working-directory: cdk
-        run: echo "$PWD/node_modules/.bin" >> $GITHUB_PATH
-      - name: Test PATH
-        working-directory: cdk
-        run: |
-          pwd
-          echo "$PATH"
       - name: Deploy stack Staging
         if: github.ref == 'refs/heads/develop'
         working-directory: cdk

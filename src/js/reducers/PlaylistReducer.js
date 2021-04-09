@@ -1,4 +1,4 @@
-import {assign, concat, findIndex, isArray, uniqBy} from "lodash";
+import {assign, concat, findIndex, includes, isArray, set, uniqBy} from "lodash";
 import spotify from "../../mappings/spotify";
 
 const defaultState = {playlists: []};
@@ -20,11 +20,14 @@ const PlaylistReducer = (state = {playlists: []}, action) => {
 
             // tracks in this payload which can be swapped with a "Taylor's version"
             const swappableTracks = action.payload.tracks
-                .filter((obj) => spotify[obj.track && obj.track.uri])
+                .map((obj) => obj.track && obj.track.uri &&
+                    set(obj, "track.replacementMapIndex", findIndex(spotify, (track) => includes(track.originals, obj.track.uri)))
+                    || obj)
+                .filter((obj) => obj.track && obj.track.replacementMapIndex >= 0)
                 .map((obj) => ({
                     ...obj.track,
                     index: obj.index,
-                    replacement: spotify[obj.track.uri],
+                    replacement: spotify[obj.track.replacementMapIndex].replacement,
                 }));
 
             if (!isArray(newState.playlists[targetPlaylistIndex].tracks)) {

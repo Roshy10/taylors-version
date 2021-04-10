@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     externals: {
@@ -36,13 +37,24 @@ module.exports = {
         new HtmlWebPackPlugin({
             chunks: ["landing"],
             favicon: "./src/assets/favicon.ico",
-            template: "./src/index.html",
+            template: "./src/index.ejs",
             filename: "./index.html",
+            templateParameters: {
+                appUrl: process.env.APP_URL,
+            },
         }),
         new HtmlWebPackPlugin({
             chunks: ["app"],
-            template: "./src/index.html",
+            template: "./src/index.ejs",
             filename: "./spotify/index.html",
+            templateParameters: {
+                appUrl: process.env.APP_URL,
+            },
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {from: "./src/assets"},
+            ],
         }),
     ],
     entry: {

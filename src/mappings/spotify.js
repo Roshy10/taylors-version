@@ -9,6 +9,8 @@ const spotify = [
             "spotify:track:6Eu31gddWw0gOGO506pJYA",
             // original extended
             "spotify:track:61v7awvaSeBXJHBKMjw59I",
+            // original Canada
+            "spotify:track:3SBGfIPUVlqt1YGxgZXoJ9",
             // BMRRS
             "spotify:track:15PRxID4aGtOncbffzgZXI",
             // (PE)
@@ -30,6 +32,8 @@ const spotify = [
             "spotify:track:4t0OI7XrODjSkAu3bTPmWj",
             // original extended
             "spotify:track:07gxAwYjBbZdhmkxpMM0GP",
+            // original Canada
+            "spotify:track:3MXzl6hq3vSqB8ZlKVGkRi",
             // BMRRS
             "spotify:track:6aQrB8kaWyaCj9RYB7Rh5L",
             // (PE)
@@ -53,6 +57,8 @@ const spotify = [
             "spotify:track:1vrd6UOGamcKNGnSHJQlSt",
             // original extended
             "spotify:track:6K1sUckiJLXhsyte2yNFTQ",
+            // original Canada
+            "spotify:track:7bad461siaxECNlaYsmIo6",
             // BMRRS
             "spotify:track:1D4PL9B8gOg78jiHg3FvBb",
             // (PE)
@@ -74,6 +80,8 @@ const spotify = [
             "spotify:track:4WXzzCof26KJLTK5kK53dS",
             // original extended
             "spotify:track:5SyE6zNX1wSRobzxNkeX43",
+            // original Canada
+            "spotify:track:4T6pHxntdd0SZrjKtt8nfM",
             // BMRRS
             "spotify:track:3DTqKBlJPlRSclFfBI0ZoE",
             // (PE)
@@ -97,6 +105,8 @@ const spotify = [
             "spotify:track:6wn61Fzx9XMxQmieLpoIhW",
             // original extended
             "spotify:track:2OGA4hbUqiAhCQj1pxeNld",
+            // original Canada
+            "spotify:track:5GEPI2EfHqf6G1Ebibo5C5",
             // BMRRS
             "spotify:track:4QhjEJ2o6QNwpZGs51AmiY",
             // (PE)
@@ -120,6 +130,8 @@ const spotify = [
             "spotify:track:3GCL1PydwsLodcpv0Ll1ch",
             // original extended
             "spotify:track:6mqdunuFFSODHKcpDTFvAj",
+            // original Canada
+            "spotify:track:3OaBCFROgrLRbZGCFP6E3M",
             // BMRRS
             "spotify:track:1GEBsLDvJGw7kviySRI6GX",
             // (PE)
@@ -141,6 +153,8 @@ const spotify = [
             "spotify:track:49mWEy5MgtNujgT7xU3emT",
             // original extended
             "spotify:track:3uvCE2wdHDyP0AojlmPlUa",
+            // original Canada
+            "spotify:track:0ykAwrzigpz5BACbaUyDm3",
             // BMRRS
             "spotify:track:2dzk2z7MXl0peRhBUsDq4d",
             // (PE)
@@ -164,6 +178,8 @@ const spotify = [
             "spotify:track:3rnI1UCyGJvUTVvT97VQr5",
             // original extended
             "spotify:track:5du2fre21jWENkp1IDRaXf",
+            // original Canada
+            "spotify:track:4xUskJSjCmC0kSi3JmjiIz",
             // BMRRS
             "spotify:track:7bUvIh9rQsboJBXaSIQZAF",
             // (PE)
@@ -185,6 +201,8 @@ const spotify = [
             "spotify:track:0HmCuN0Z3OX1Qrz43FLOPL",
             // original extended
             "spotify:track:5SSYD3BoD18792DOlW0h5V",
+            // original Canada
+            "spotify:track:5kCqMXvv33WEcpb3Xvx1FZ",
             // BMRRS
             "spotify:track:0ReNbPVMU7jUWqn1yHo9cE",
             // (PE)
@@ -206,6 +224,8 @@ const spotify = [
             "spotify:track:5P4wWhUYWM0IaVYLuZxdar",
             // original extended
             "spotify:track:6MNPOhGO5dv15nqei7GN0D",
+            // original Canada
+            "spotify:track:4ONlmL2EYEryaJzmh9fG1o",
             // BMRRS
             "spotify:track:54ziHHVIBJg3YJ9sn17mEy",
             // (PE)
@@ -227,6 +247,8 @@ const spotify = [
             "spotify:track:47HtKpfzpAt8rQjjXWotFj",
             // original extended
             "spotify:track:3wxkYiniEnp0ZafDE5vD07",
+            // original Canada
+            "spotify:track:30oulfBS2vZcq1wQZPXlQo",
             // BMRRS
             "spotify:track:5VHdgl9hFUmabiCO5jeISv",
             // (PE)
@@ -250,6 +272,8 @@ const spotify = [
             "spotify:track:3esA216TyLHEkNiBCeCmcg",
             // original extended
             "spotify:track:4G5YAPiKudJCDmICzj0Zwk",
+            // original Canada
+            "spotify:track:6LAIapZk9Ozzhau5gBDNmi",
             // BMRRS
             "spotify:track:0ck1qErO76fM9xKxuSeqDk",
             // (PE)
@@ -271,6 +295,8 @@ const spotify = [
             "spotify:track:1yACRKAwlXWhXXFUSkvzhD",
             // original extended
             "spotify:track:6rEdUI8O9sPKbN1HQKnbrL",
+            // original Canada
+            "spotify:track:4BuxFaXa4RblrdN57lWN6d",
             // BMRRS
             "spotify:track:6nIUWFgMly8cdh32SbnhiR",
             // (PE)

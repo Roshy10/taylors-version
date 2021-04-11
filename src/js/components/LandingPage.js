@@ -56,6 +56,16 @@ const useStyles = makeStyles((theme) => ({
             bottom: theme.spacing(1),
         },
     },
+    latestUpdateContainer: {
+        color: theme.palette.common.white,
+        textAlign: "center",
+        [theme.breakpoints.down(470)]: {
+            display: "none",
+        },
+    },
+    latestUpdateAlbum: {
+        fontWeight: 600,
+    },
 }));
 
 export const LandingPage = () => {
@@ -77,6 +87,10 @@ export const LandingPage = () => {
                         <Typography className={classes.message}>{t("landing.message")}</Typography>
                         <Typography className={classes.message}>{t("landing.messageTwo")}</Typography>
                     </Box>
+                </Box>
+                <Box className={classes.latestUpdateContainer}>
+                    <Typography>{t("landing.latestMessage")}<Typography className={classes.latestUpdateAlbum}>{t(
+                        "landing.latestAlbum")}</Typography></Typography>
                 </Box>
             </Box>
             <Box className={classes.footer}>

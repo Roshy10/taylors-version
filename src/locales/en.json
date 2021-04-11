@@ -1,0 +1,50 @@
+{
+  "taylorsVersion": {
+    "appName": "Taylor's Version",
+    "authorize": {
+      "startButton": "Sign in",
+      "success": "Account authorised successfully"
+    },
+    "landing": {
+      "donate": "Donate",
+      "github": "Github",
+      "latestAlbum": "Fearless",
+      "latestMessage": "Latest supported album:",
+      "legal": "Legal",
+      "message": "Update your Spotify playlists to use the latest (Taylor's Version)",
+      "messageTwo": "Support Taylor Swift in her fight to own the rights to her own music."
+    },
+    "notifications": {
+      "http": {
+        "noAuthToken": "Your auth token is missing, please sign in with Spotify again"
+      },
+      "levels": {
+        "error": "Error",
+        "info": "Info",
+        "success": "Success",
+        "warning": "Warning"
+      },
+      "replacement": {
+        "failure": "Playlist updating completed with errors, please try again.",
+        "success": "Playlist updating complete"
+      }
+    },
+    "process": {
+      "configure": {
+        "includeCollaborative": "Your Collaborative Playlists",
+        "includeOthers": "Other's Collaborative Playlists",
+        "includePublic": "Your Public playlists",
+        "noneFound": "Looks like your playlists are already Taylorized!"
+      },
+      "update": {
+        "dialogBody": "This will update one song to it's (Taylor's Version).",
+        "dialogBody_plural": "This will update {{count}} songs to their (Taylor's Version).",
+        "dialogCancel": "Cancel",
+        "dialogConfirm": "Yes",
+        "dialogTitle": "Update one playlist?",
+        "dialogTitle_plural": "Update {{count}} playlists?",
+        "openDialogButton": "Update Playlists"
+      }
+    }
+  }
+}

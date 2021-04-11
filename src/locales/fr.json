@@ -1,0 +1,50 @@
+{
+  "taylorsVersion": {
+    "appName": "Taylor's Version",
+    "authorize": {
+      "startButton": "S’identifier",
+      "success": "Account authorised successfully"
+    },
+    "landing": {
+      "donate": "Faire un don",
+      "github": "Github",
+      "latestAlbum": "Fearless",
+      "latestMessage": "Latest supported album:",
+      "legal": "Mentions légales",
+      "message": "Mets à jour tes playlists Spotify afin d’utiliser les musiques en 'Taylor’s Version'",
+      "messageTwo": "Soutiens Taylor Swift dans son combat pour posséder les droits de sa propre musique."
+    },
+    "notifications": {
+      "http": {
+        "noAuthToken": "Your auth token is missing, please sign in with Spotify again"
+      },
+      "levels": {
+        "error": "Error",
+        "info": "Info",
+        "success": "Success",
+        "warning": "Warning"
+      },
+      "replacement": {
+        "failure": "Playlist updating completed with errors, please try again.",
+        "success": "Playlist updating complete"
+      }
+    },
+    "process": {
+      "configure": {
+        "includeCollaborative": "Tes playlists collaboratives",
+        "includeOthers": "Les playlists collaboratives d’autres utilisateurs",
+        "includePublic": "Tes playlists publiques",
+        "noneFound": "On dirait bien que toutes tes playlists sont déjà Taylor-isées !"
+      },
+      "update": {
+        "dialogBody": "Cette requête mettra à jour une chanson vers leur 'Taylor’s Version'.",
+        "dialogBody_plural": "Cette requête mettra à jour {{count}} chansons en leur 'Taylor’s Version'.",
+        "dialogCancel": "Annuler",
+        "dialogConfirm": "Oui",
+        "dialogTitle": "Mettre à jour une playlist?",
+        "dialogTitle_plural": "Mettre à jour {{count}} playlist?",
+        "openDialogButton": "Mets à jour les playlists"
+      }
+    }
+  }
+}

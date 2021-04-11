@@ -45,11 +45,8 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             chunks: ["app"],
-            template: "./src/index.ejs",
+            template: "./src/app.ejs",
             filename: "./spotify/index.html",
-            templateParameters: {
-                appUrl: process.env.APP_URL,
-            },
         }),
         new CopyWebpackPlugin({
             patterns: [

@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
 import Notifications from "./Notifications";
 import PlaylistList from "./PlaylistList";
+import SocialBar from "./SocialBar";
 import TopBar from "./TopBar";
 import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
@@ -53,6 +54,11 @@ const useStyles = makeStyles((theme) => ({
     backdrop: {
         zIndex: theme.zIndex.tooltip + 1,
         color: "#fff",
+    },
+    footer: {
+        position: "fixed",
+        bottom: theme.spacing(2),
+        width: "100%",
     },
 }));
 
@@ -185,6 +191,9 @@ export const ConfigurePage = () => {
                 </Backdrop>
                 <Notifications/>
             </Container>
+            <footer className={classes.footer}>
+                <SocialBar/>
+            </footer>
         </Fragment>
     );
 };

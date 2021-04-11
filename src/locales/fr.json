@@ -45,6 +45,7 @@
         "dialogTitle_plural": "Mettre à jour {{count}} playlist?",
         "openDialogButton": "Mets à jour les playlists"
       }
-    }
+    },
+    "shareMessage": "All my playlists use (Taylor's Version)"
   }
 }

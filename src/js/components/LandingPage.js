@@ -89,8 +89,8 @@ export const LandingPage = () => {
                     </Box>
                 </Box>
                 <Box className={classes.latestUpdateContainer}>
-                    <Typography>{t("landing.latestMessage")}<Typography className={classes.latestUpdateAlbum}>{t(
-                        "landing.latestAlbum")}</Typography></Typography>
+                    <Typography>{t("landing.latestMessage")}</Typography>
+                    <Typography className={classes.latestUpdateAlbum}>{t("landing.latestAlbum")}</Typography>
                 </Box>
             </Box>
             <Box className={classes.footer}>

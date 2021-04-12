@@ -398,6 +398,8 @@ const spotify = [
         "originals": [
             // Single
             "spotify:track:4pFvEWbjBpPUdYRQly0THs",
+            // US Version (Valentine's Day Cover Art)
+            "spotify:track:1P5QpwOgXJuoVTm3CWbnLY",
         ],
     },
 ];

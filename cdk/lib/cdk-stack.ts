@@ -6,7 +6,7 @@ import s3deploy = require('@aws-cdk/aws-s3-deployment');
 import acm = require('@aws-cdk/aws-certificatemanager');
 import cdk = require('@aws-cdk/core');
 import targets = require('@aws-cdk/aws-route53-targets/lib');
-import {Construct} from '@aws-cdk/core';
+import {Construct, Duration} from '@aws-cdk/core';
 
 export interface StaticSiteProps {
     domainName: string;
@@ -40,6 +40,18 @@ export class StaticSite extends Construct {
         });
         new cdk.CfnOutput(this, 'Bucket', {value: siteBucket.bucketName});
 
+        // Log bucket
+        const logBucket = new s3.Bucket(this, 'LogBucket', {
+            lifecycleRules: [{
+                expiration: Duration.days(365),
+                transitions: [{
+                    storageClass: s3.StorageClass.INFREQUENT_ACCESS,
+                    transitionAfter: Duration.days(30)
+                }],
+            }],
+            removalPolicy: cdk.RemovalPolicy.RETAIN
+        });
+
         // TLS certificate
         const certificateArn = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
             domainName: siteDomain,
@@ -64,7 +76,10 @@ export class StaticSite extends Construct {
                     },
                     behaviors: [{isDefaultBehavior: true}],
                 }
-            ]
+            ],
+            loggingConfig: {
+                bucket: logBucket
+            }
         });
         new cdk.CfnOutput(this, 'DistributionId', {value: distribution.distributionId});
 

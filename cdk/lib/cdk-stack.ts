@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-import cloudfront = require('@aws-cdk/aws-cloudfront');
-import route53 = require('@aws-cdk/aws-route53');
-import s3 = require('@aws-cdk/aws-s3');
-import s3deploy = require('@aws-cdk/aws-s3-deployment');
-import acm = require('@aws-cdk/aws-certificatemanager');
-import cdk = require('@aws-cdk/core');
-import targets = require('@aws-cdk/aws-route53-targets/lib');
+import * as cloudfront from '@aws-cdk/aws-cloudfront';
+import * as origins from '@aws-cdk/aws-cloudfront-origins';
+import * as route53 from '@aws-cdk/aws-route53';
+import * as s3 from '@aws-cdk/aws-s3';
+import * as s3deploy from '@aws-cdk/aws-s3-deployment';
+import * as acm from '@aws-cdk/aws-certificatemanager';
+import * as cdk from '@aws-cdk/core';
+import * as targets from '@aws-cdk/aws-route53-targets/lib';
 
 export interface StaticSiteProps {
     domainName: string;
@@ -52,33 +53,24 @@ export class StaticSite extends cdk.Construct {
         });
 
         // TLS certificate
-        const certificateArn = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
+        const certificate = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
             domainName: siteDomain,
             hostedZone: zone,
             region: 'us-east-1', // Cloudfront only checks this region for certificates.
-        }).certificateArn;
-        new cdk.CfnOutput(this, 'Certificate', {value: certificateArn});
+        });
+        new cdk.CfnOutput(this, 'Certificate', {value: certificate.certificateArn});
 
         // CloudFront distribution that provides HTTPS
-        const distribution = new cloudfront.CloudFrontWebDistribution(this, 'SiteDistribution', {
-            aliasConfiguration: {
-                acmCertRef: certificateArn,
-                names: [siteDomain],
-                sslMethod: cloudfront.SSLMethod.SNI,
-                securityPolicy: cloudfront.SecurityPolicyProtocol.TLS_V1_1_2016,
+        const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
+            defaultBehavior: {
+                origin: new origins.S3Origin(siteBucket),
+                cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+                viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             },
-            originConfigs: [
-                {
-                    customOriginSource: {
-                        domainName: siteBucket.bucketWebsiteDomainName,
-                        originProtocolPolicy: cloudfront.OriginProtocolPolicy.HTTP_ONLY,
-                    },
-                    behaviors: [{isDefaultBehavior: true}],
-                }
-            ],
-            loggingConfig: {
-                bucket: logBucket
-            },
+            domainNames: [siteDomain],
+            certificate: certificate,
+            minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_1_2016,
+            logBucket: logBucket,
             priceClass: cloudfront.PriceClass.PRICE_CLASS_ALL
         });
         new cdk.CfnOutput(this, 'DistributionId', {value: distribution.distributionId});

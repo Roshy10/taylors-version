@@ -6,7 +6,6 @@ import s3deploy = require('@aws-cdk/aws-s3-deployment');
 import acm = require('@aws-cdk/aws-certificatemanager');
 import cdk = require('@aws-cdk/core');
 import targets = require('@aws-cdk/aws-route53-targets/lib');
-import {Construct, Duration} from '@aws-cdk/core';
 
 export interface StaticSiteProps {
     domainName: string;
@@ -21,8 +20,8 @@ export interface StaticSiteProps {
  *
  * copied from https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/static-site/static-site.ts
  */
-export class StaticSite extends Construct {
-    constructor(parent: Construct, name: string, props: StaticSiteProps) {
+export class StaticSite extends cdk.Construct {
+    constructor(parent: cdk.Construct, name: string, props: StaticSiteProps) {
         super(parent, name);
 
         const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: props.domainName});
@@ -43,10 +42,10 @@ export class StaticSite extends Construct {
         // Log bucket
         const logBucket = new s3.Bucket(this, 'LogBucket', {
             lifecycleRules: [{
-                expiration: Duration.days(365),
+                expiration: cdk.Duration.days(365),
                 transitions: [{
                     storageClass: s3.StorageClass.INFREQUENT_ACCESS,
-                    transitionAfter: Duration.days(30)
+                    transitionAfter: cdk.Duration.days(30)
                 }],
             }],
             removalPolicy: cdk.RemovalPolicy.RETAIN
@@ -79,7 +78,8 @@ export class StaticSite extends Construct {
             ],
             loggingConfig: {
                 bucket: logBucket
-            }
+            },
+            priceClass: cloudfront.PriceClass.PRICE_CLASS_ALL
         });
         new cdk.CfnOutput(this, 'DistributionId', {value: distribution.distributionId});
 

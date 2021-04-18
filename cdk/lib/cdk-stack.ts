@@ -60,11 +60,17 @@ export class StaticSite extends cdk.Construct {
         });
         new cdk.CfnOutput(this, 'Certificate', {value: certificate.certificateArn});
 
+        // Caching policy for cloudfront, to enable brotli compression
+        const cachePolicy = new cloudfront.CachePolicy(this, "SiteCachePolicy", {
+            enableAcceptEncodingBrotli: true,
+            enableAcceptEncodingGzip: true
+        });
+
         // CloudFront distribution that provides HTTPS
         const distribution = new cloudfront.Distribution(this, 'SiteDistribution', {
             defaultBehavior: {
                 origin: new origins.S3Origin(siteBucket),
-                cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
+                cachePolicy,
                 viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             },
             domainNames: [siteDomain],

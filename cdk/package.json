@@ -15,8 +15,10 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@aws-cdk/aws-certificatemanager": "^1.98.0",
     "@aws-cdk/aws-cloudfront": "^1.98.0",
     "@aws-cdk/aws-cloudfront-origins": "^1.98.0",
+    "@aws-cdk/aws-route53": "^1.98.0",
     "@aws-cdk/aws-route53-targets": "^1.98.0",
     "@aws-cdk/aws-s3": "^1.98.0",
     "@aws-cdk/aws-s3-deployment": "^1.98.0",

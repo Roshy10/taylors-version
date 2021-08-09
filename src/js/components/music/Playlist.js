@@ -4,7 +4,7 @@ import {ExpandLess, ExpandMore} from "@material-ui/icons";
 import {isArray} from "lodash";
 import PropTypes from "prop-types";
 import React, {Fragment, useState} from "react";
-import {playlist} from "../types";
+import {playlist} from "../../types";
 import MediaArtwork from "./MediaArtwork";
 import Track from "./Track";
 

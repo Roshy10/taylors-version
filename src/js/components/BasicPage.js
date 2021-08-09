@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("sm")]: {
             marginTop: 0,
         },
+        marginBottom: 76 + theme.spacing(1), // height of the footer + a bit
+        [theme.breakpoints.down("xs")]: {
+            marginBottom: 68 + theme.spacing(1),
+        },
     },
     title: {
         [theme.breakpoints.down("sm")]: {
@@ -20,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     },
     footerItem: {
         color: theme.palette.text.primary,
+    },
+    footerBackground: {
+        background: theme.palette.common.white,
     },
 }));
 
@@ -39,7 +46,7 @@ const BasicPage = (props) => {
                 ) : null}
                 {children}
             </Container>
-            <Footer showSocials classes={{footerItem: classes.footerItem}}/>
+            <Footer showSocials classes={{footerItem: classes.footerItem, root: classes.footerBackground}}/>
         </React.Fragment>
     );
 };

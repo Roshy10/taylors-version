@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import {useDispatch} from "react-redux";
 import {useDeepCompareEffect} from "use-deep-compare";
-import {requestTrackDetails} from "../actions/TrackActions";
-import {playlist} from "../types";
+import {requestTrackDetails} from "../../actions/TrackActions";
+import {playlist} from "../../types";
 import Playlist from "./Playlist";
 
 const PlaylistList = ({data, excludedPlaylists, toggleExcludedPlaylist}) => {

@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import React, {Fragment} from "react";
 import {useSelector} from "react-redux";
-import {track} from "../types";
+import {track} from "../../types";
 import MediaArtwork from "./MediaArtwork";
 
 const useStyles = makeStyles((theme) => ({

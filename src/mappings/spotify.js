@@ -3,10 +3,14 @@ const spotify = [
     {
         "replacement": "spotify:track:1Ov37jtRQ2YNAe8HzfczkL",
         "originals": [
-            // original
+            // 1989
             "spotify:track:3fVnlF4pGqWI9flVENcT28",
+            // 1989 (Deluxe)
+            "spotify:track:4A4A6dwl5DqdqrZaEtKGPR",
             // rep surprise playlist
             "spotify:track:22C0JIVhFaczZ4t9heqREN",
+            // BMRRS
+            "spotify:track:3ScVaMDQwaD8iumBYzcDvr",
         ],
     },
 

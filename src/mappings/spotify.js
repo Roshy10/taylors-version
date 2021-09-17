@@ -1,4 +1,14 @@
 const spotify = [
+    // Single - Wildest Dreams
+    {
+        "replacement": "spotify:track:1Ov37jtRQ2YNAe8HzfczkL",
+        "originals": [
+            // original
+            "spotify:track:3fVnlF4pGqWI9flVENcT28",
+            // rep surprise playlist
+            "spotify:track:22C0JIVhFaczZ4t9heqREN",
+        ],
+    },
 
     // Album - Fearless
     // Fearless

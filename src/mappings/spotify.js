@@ -7,6 +7,10 @@ const spotify = [
             "spotify:track:3fVnlF4pGqWI9flVENcT28",
             // 1989 (Deluxe)
             "spotify:track:4A4A6dwl5DqdqrZaEtKGPR",
+            // 1989 North America
+            "spotify:track:59HjlYCeBsxdI0fcm3zglw",
+            // 1989 (Deluxe) North America
+            "spotify:track:106R7Z57WYzBAfrXImV30y",
             // rep surprise playlist
             "spotify:track:22C0JIVhFaczZ4t9heqREN",
             // BMRRS

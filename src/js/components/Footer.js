@@ -1,30 +1,59 @@
-import {Link, Typography} from "@material-ui/core";
+import {Box, Link, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import React, {Fragment} from "react";
+import PropTypes from "prop-types";
+import React from "react";
 import {useTranslation} from "react-i18next";
+import SocialBar from "./SocialBar";
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        position: "absolute",
+        bottom: theme.spacing(2),
+        color: theme.palette.common.white,
+        left: 0,
+        right: 0,
+        [theme.breakpoints.down("xs")]: {
+            bottom: theme.spacing(1),
+        },
+    },
+    itemContainer: {
+        display: "flex",
+        justifyContent: "space-evenly",
+    },
     footerItem: {
         color: theme.palette.common.white,
     },
 }));
 
-const Footer = () => {
+const Footer = (props) => {
     const {t} = useTranslation();
-    const classes = useStyles();
+    const classes = useStyles(props);
+    const {showSocials} = props;
     return (
-        <Fragment>
-            <Link href="https://raw.githubusercontent.com/Roshy10/taylors-version/master/LICENSE">
-                <Typography className={classes.footerItem}>{t("landing.legal")}</Typography>
-            </Link>
-            <Link href="https://github.com/Roshy10/taylors-version">
-                <Typography className={classes.footerItem}>{t("landing.github")}</Typography>
-            </Link>
-            <Link href="https://ko-fi.com/roshy10">
-                <Typography className={classes.footerItem}>{t("landing.donate")}</Typography>
-            </Link>
-        </Fragment>
+        <footer className={classes.root}>
+            {showSocials ? (
+                <SocialBar/>
+            ) : null}
+            <Box className={classes.itemContainer}>
+                <Link href="https://raw.githubusercontent.com/Roshy10/taylors-version/master/LICENSE">
+                    <Typography className={classes.footerItem}>{t("landing.legal")}</Typography>
+                </Link>
+                <Link href="https://github.com/Roshy10/taylors-version">
+                    <Typography className={classes.footerItem}>{t("landing.github")}</Typography>
+                </Link>
+                <Link href="/faq">
+                    <Typography className={classes.footerItem}>{t("landing.faq")}</Typography>
+                </Link>
+                <Link href="https://ko-fi.com/roshy10">
+                    <Typography className={classes.footerItem}>{t("landing.donate")}</Typography>
+                </Link>
+            </Box>
+        </footer>
     );
+};
+
+Footer.propTypes = {
+    showSocials: PropTypes.bool,
 };
 
 export default Footer;

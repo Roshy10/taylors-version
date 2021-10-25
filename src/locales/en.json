@@ -7,6 +7,7 @@
     },
     "landing": {
       "donate": "Donate",
+      "faq": "FAQ",
       "github": "Github",
       "latestAlbum": "Wildest Dreams",
       "latestMessage": "Latest update:",
@@ -46,6 +47,50 @@
         "openDialogButton": "Update Playlists"
       }
     },
-    "shareMessage": "All my playlists use (Taylor's Version)"
+    "shareMessage": "All my playlists use (Taylor's Version)",
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "data": [
+        {
+          "q": "Why did you make this?",
+          "a": [
+            "Once Taylor announced she was re-releasing her songs I realised there will be a lot of people, and even more playlists, that have her songs in them.",
+            "At the time I was looking for a new project to give me an opportunity to practice some new skills and figured I could make a website to swap songs automatically in peoples playlists."
+          ]
+        },
+        {
+          "q": "How does this work/what will it do to my playlists?",
+          "a": [
+            "This website will scan all of your spotify playlists and check for any of Taylor's songs she's re-released as a '(Taylor's Version)'. You will be shown a screen with all of the proposed changes, which you may then customise, before any changes will happen to your changes.",
+            "The order of the songs will be kept but unfortunately the 'date added' will get changed due to the way Spotify's API works."
+          ]
+        },
+        {
+          "q": "How quickly will this website be available after release?",
+          "a": [
+            "I keep an eye out for Taylor's new releases, but I have no idea what the new songs spotify IDs will be until everyone else does, so I need to update this website each time.",
+            "I try and update it as soon as possible (within 12 hours), but you can check for the latest updates on the homepage, or sign up for notifications as soon as we update to the latest music."
+          ]
+        },
+        {
+          "q": "Will you add Apple/Amazon/Tidal support? ",
+          "a": "Originally I was planning to support as many music services as possible, but unfortunately most of them don't have an adequate API that allows music in playlists to be swapped, so it's impossible to make this work with them."
+        },
+        {
+          "q": "Are you stealing/harvesting my data? How do I know this is safe?",
+          "a": [
+            "I made this project out of the desire to learn new things and make something cool that other people might find helpful.",
+            "I have absolutely no desire to monetise this or collect/sell user data, but if you don't believe me you can check out the source on github, or even run this yourself!"
+          ]
+        },
+        {
+          "q": "Wow this is cool, how can I help?",
+          "a": [
+            "Thanks! feel free to share this with anyone who might find it helpful. If you like you can donate using the link on the homepage to help cover running costs.",
+            "If you find an issue or have an idea for a new feature, you're welcome to raise an issue on Github."
+          ]
+        }
+      ]
+    }
   }
 }

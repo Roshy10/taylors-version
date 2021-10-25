@@ -48,6 +48,14 @@ module.exports = {
             template: "./src/app.ejs",
             filename: "./spotify/index.html",
         }),
+        new HtmlWebPackPlugin({
+            chunks: ["faq"],
+            template: "./src/faq.ejs",
+            filename: "./faq/index.html",
+            templateParameters: {
+                appUrl: process.env.APP_URL,
+            },
+        }),
         new CopyWebpackPlugin({
             patterns: [
                 {from: "./src/assets"},
@@ -57,6 +65,7 @@ module.exports = {
     entry: {
         landing: ["babel-polyfill", "./src/index.js"],
         app: ["babel-polyfill", "./src/spotify.js"],
+        faq: ["babel-polyfill", "./src/faq.js"],
     },
     optimization: {
         splitChunks: {
@@ -67,6 +76,7 @@ module.exports = {
         // start development server on the specified port
         port: 9000,
         open: false,
+        https: true,
     },
     // enable source maps to aid in debugging
     devtool: "source-map",

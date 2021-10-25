@@ -45,17 +45,6 @@ const useStyles = makeStyles((theme) => ({
     message: {
         margin: theme.spacing(2, 0),
     },
-    footer: {
-        position: "absolute",
-        bottom: theme.spacing(2),
-        color: theme.palette.common.white,
-        display: "flex",
-        justifyContent: "space-evenly",
-        width: "100%",
-        [theme.breakpoints.down("xs")]: {
-            bottom: theme.spacing(1),
-        },
-    },
     latestUpdateContainer: {
         color: theme.palette.common.white,
         textAlign: "center",
@@ -93,9 +82,7 @@ export const LandingPage = () => {
                     <Typography className={classes.latestUpdateAlbum}>{t("landing.latestAlbum")}</Typography>
                 </Box>
             </Box>
-            <Box className={classes.footer}>
-                <Footer/>
-            </Box>
+            <Footer/>
         </Fragment>
     );
 };

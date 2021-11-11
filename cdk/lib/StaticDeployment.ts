@@ -8,9 +8,15 @@ import * as acm from '@aws-cdk/aws-certificatemanager';
 import * as cdk from '@aws-cdk/core';
 import * as targets from '@aws-cdk/aws-route53-targets/lib';
 
-export interface StaticSiteProps {
-    domainName: string;
-    siteSubDomain: string;
+interface StaticDeploymentProps {
+    zoneName: string;
+    siteFqdn: string;
+    contentSource: s3deploy.ISource[],
+    additionalBehaviors?: {
+        pathPattern: string,
+        origin: cloudfront.IOrigin,
+        behaviorOptions?: cloudfront.AddBehaviorOptions
+    }[]
 }
 
 /**
@@ -21,19 +27,15 @@ export interface StaticSiteProps {
  *
  * copied from https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/static-site/static-site.ts
  */
-export class StaticSite extends cdk.Construct {
-    constructor(parent: cdk.Construct, name: string, props: StaticSiteProps) {
+class StaticDeployment extends cdk.Construct {
+    constructor(parent: cdk.Construct, name: string, props: StaticDeploymentProps) {
         super(parent, name);
 
-        const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: props.domainName});
-        const siteDomain = props.siteSubDomain
-            ? props.siteSubDomain + '.' + props.domainName
-            : props.domainName;
-        new cdk.CfnOutput(this, 'Site', {value: 'https://' + siteDomain});
+        const zone = route53.HostedZone.fromLookup(this, 'Zone', {domainName: props.zoneName});
 
         // Content bucket
         const siteBucket = new s3.Bucket(this, 'SiteBucket', {
-            bucketName: siteDomain,
+            bucketName: props.siteFqdn,
             websiteIndexDocument: 'index.html',
             publicReadAccess: true,
             removalPolicy: cdk.RemovalPolicy.DESTROY
@@ -54,7 +56,7 @@ export class StaticSite extends cdk.Construct {
 
         // TLS certificate
         const certificate = new acm.DnsValidatedCertificate(this, 'SiteCertificate', {
-            domainName: siteDomain,
+            domainName: props.siteFqdn,
             hostedZone: zone,
             region: 'us-east-1', // Cloudfront only checks this region for certificates.
         });
@@ -73,24 +75,25 @@ export class StaticSite extends cdk.Construct {
                 cachePolicy,
                 viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             },
-            domainNames: [siteDomain],
+            domainNames: [props.siteFqdn],
             certificate: certificate,
             minimumProtocolVersion: cloudfront.SecurityPolicyProtocol.TLS_V1_1_2016,
             logBucket: logBucket,
             priceClass: cloudfront.PriceClass.PRICE_CLASS_ALL
         });
         new cdk.CfnOutput(this, 'DistributionId', {value: distribution.distributionId});
+        props.additionalBehaviors?.forEach((behavior) => distribution.addBehavior(behavior.pathPattern, behavior.origin, behavior.behaviorOptions))
 
         // Route53 alias record for the CloudFront distribution
         new route53.ARecord(this, 'SiteAliasRecord', {
-            recordName: siteDomain,
+            recordName: props.siteFqdn,
             target: route53.RecordTarget.fromAlias(new targets.CloudFrontTarget(distribution)),
             zone
         });
 
         // Deploy site contents to S3 bucket
         new s3deploy.BucketDeployment(this, 'DeployWithInvalidation', {
-            sources: [s3deploy.Source.asset('../dist')],
+            sources: props.contentSource,
             destinationBucket: siteBucket,
             distribution,
             distributionPaths: ['/*'],
@@ -98,3 +101,5 @@ export class StaticSite extends cdk.Construct {
         });
     }
 }
+
+export default StaticDeployment;

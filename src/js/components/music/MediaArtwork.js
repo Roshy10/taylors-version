@@ -1,7 +1,7 @@
 import {Avatar, ListItemAvatar} from "@material-ui/core";
 import {isArray, isNull, sortBy} from "lodash";
 import React from "react";
-import {externalUrls, images} from "../types";
+import {externalUrls, images} from "../../types";
 
 export const MediaArtwork = ({externalUrls, images}) => {
     const artworks = isArray(images) && images.length > 0 && sortBy(images, "width");

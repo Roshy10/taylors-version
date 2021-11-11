@@ -3,7 +3,11 @@ import {makeStyles} from "@material-ui/core/styles";
 import React, {Fragment} from "react";
 import {useTranslation} from "react-i18next";
 import Footer from "./Footer";
+import Notifications from "./Notifications";
+import PushPrompt from "./push/PushPrompt";
 import SpotifyTokenButton from "./SpotifyTokenButton";
+
+const mobileCutoff = 470;
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -14,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "90%",
     },
     centerOuterContainer: {
-        height: "100%",
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
@@ -26,13 +30,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: "column",
-        [theme.breakpoints.down(470)]: {
-            height: "90%",
+        [theme.breakpoints.down(mobileCutoff)]: {
+            height: "60%",
         },
     },
     button: {
-        color: theme.palette.common.white,
-        borderColor: theme.palette.common.white,
         [theme.breakpoints.down("xs")]: {
             width: "80%",
         },
@@ -45,30 +47,22 @@ const useStyles = makeStyles((theme) => ({
     message: {
         margin: theme.spacing(2, 0),
     },
-    footer: {
-        position: "absolute",
-        bottom: theme.spacing(2),
-        color: theme.palette.common.white,
-        display: "flex",
-        justifyContent: "space-evenly",
-        width: "100%",
-        [theme.breakpoints.down("xs")]: {
-            bottom: theme.spacing(1),
-        },
-    },
     latestUpdateContainer: {
         color: theme.palette.common.white,
         textAlign: "center",
-        [theme.breakpoints.down(470)]: {
+    },
+    notificationIcon: {
+        [theme.breakpoints.up(mobileCutoff)]: {
             display: "none",
         },
     },
     latestUpdateAlbum: {
         fontWeight: 600,
+        marginBottom: theme.spacing(1),
     },
 }));
 
-export const LandingPage = () => {
+export const LandingLayout = () => {
     const {t} = useTranslation();
     const classes = useStyles();
 
@@ -91,13 +85,13 @@ export const LandingPage = () => {
                 <Box className={classes.latestUpdateContainer}>
                     <Typography>{t("landing.latestMessage")}</Typography>
                     <Typography className={classes.latestUpdateAlbum}>{t("landing.latestAlbum")}</Typography>
+                    <PushPrompt/>
                 </Box>
             </Box>
-            <Box className={classes.footer}>
-                <Footer/>
-            </Box>
+            <Footer/>
+            <Notifications/>
         </Fragment>
     );
 };
 
-export default LandingPage;
+export default LandingLayout;

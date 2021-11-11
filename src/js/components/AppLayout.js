@@ -1,4 +1,4 @@
-import {Backdrop, CircularProgress, Collapse, Container, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
+import {Backdrop, Box, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Close, Tune} from "@material-ui/icons";
 import clsx from "clsx";
@@ -7,19 +7,13 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
+import BasicPage from "./BasicPage";
+import PlaylistList from "./music/PlaylistList";
 import Notifications from "./Notifications";
-import PlaylistList from "./PlaylistList";
-import SocialBar from "./SocialBar";
-import TopBar from "./TopBar";
+import PushPrompt from "./push/PushPrompt";
 import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        marginTop: theme.spacing(1),
-        [theme.breakpoints.down("sm")]: {
-            marginTop: 0,
-        },
-    },
     filterButton: {
         float: "right",
     },
@@ -43,26 +37,26 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(1),
         },
     },
-    noneFound: {
-        fontSize: "2rem",
+    noneFoundContainer: {
         textAlign: "center",
+    },
+    noneFoundMessage: {
+        fontSize: "2rem",
         marginTop: theme.spacing(1),
         [theme.breakpoints.down("xs")]: {
             fontSize: "1.5rem",
         },
     },
+    noneFoundButton: {
+        marginTop: theme.spacing(2),
+    },
     backdrop: {
         zIndex: theme.zIndex.tooltip + 1,
         color: "#fff",
     },
-    footer: {
-        position: "fixed",
-        bottom: theme.spacing(2),
-        width: "100%",
-    },
 }));
 
-export const ConfigurePage = () => {
+export const AppLayout = () => {
     const {t} = useTranslation();
     const classes = useStyles();
     const compactFilters = useMediaQuery((theme) => theme.breakpoints.down("md"));
@@ -155,47 +149,43 @@ export const ConfigurePage = () => {
     );
 
     return (
-        <Fragment>
-            <TopBar/>
-            <Container
-                fixed
-                className={classes.container}
-            >
-                {compactFilters
-                    ? (<Fragment>
-                        <IconButton
-                            className={classes.filterButton}
-                            onClick={() => setFiltersExpanded((val) => !val)}
-                        >
-                            {filtersExpanded ? <Close/> : <Tune/>}
-                        </IconButton>
-                        <Collapse className={classes.filters} in={filtersExpanded}>
-                            <FormButtons/>
-                        </Collapse>
-                    </Fragment>)
-                    : (<FormButtons className={classes.filters}/>)
-                }
-                <UpdatePlaylistsDialog ButtonProps={{className: classes.updateButton}} replacements={replacements}/>
-                {(swappablePlaylists.length > 0 || loading)
-                    ? <PlaylistList
-                        data={swappablePlaylists}
-                        excludedPlaylists={excludedPlaylists}
-                        toggleExcludedPlaylist={toggleExcludedPlaylist}
-                    />
-                    : <Typography className={classes.noneFound}>
+        <BasicPage>
+            {compactFilters
+                ? (<Fragment>
+                    <IconButton
+                        className={classes.filterButton}
+                        onClick={() => setFiltersExpanded((val) => !val)}
+                    >
+                        {filtersExpanded ? <Close/> : <Tune/>}
+                    </IconButton>
+                    <Collapse className={classes.filters} in={filtersExpanded}>
+                        <FormButtons/>
+                    </Collapse>
+                </Fragment>)
+                : (<FormButtons className={classes.filters}/>)
+            }
+            <UpdatePlaylistsDialog ButtonProps={{className: classes.updateButton}} replacements={replacements}/>
+            {(swappablePlaylists.length > 0 || loading)
+                ? <PlaylistList
+                    data={swappablePlaylists}
+                    excludedPlaylists={excludedPlaylists}
+                    toggleExcludedPlaylist={toggleExcludedPlaylist}
+                />
+                : <Box className={classes.noneFoundContainer}>
+                    <Typography className={classes.noneFoundMessage}>
                         {t("process.configure.noneFound")}
                     </Typography>
-                }
-                <Backdrop className={classes.backdrop} open={loading}>
-                    <CircularProgress/>
-                </Backdrop>
-                <Notifications/>
-            </Container>
-            <footer className={classes.footer}>
-                <SocialBar/>
-            </footer>
-        </Fragment>
+                    <Box className={classes.noneFoundButton}>
+                        <PushPrompt lightTheme/>
+                    </Box>
+                </Box>
+            }
+            <Backdrop className={classes.backdrop} open={loading}>
+                <CircularProgress/>
+            </Backdrop>
+            <Notifications/>
+        </BasicPage>
     );
 };
 
-export default ConfigurePage;
+export default AppLayout;

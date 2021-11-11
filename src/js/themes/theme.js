@@ -12,6 +12,9 @@ const theme = createMuiTheme({
         secondary: {
             main: secondaryColour,
         },
+        action: {
+            active: "rgba(255,255,255,0.65)",
+        },
     },
     props: {
         MuiLink: {

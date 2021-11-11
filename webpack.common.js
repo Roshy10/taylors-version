@@ -7,6 +7,7 @@ module.exports = {
         config: JSON.stringify({
             appUrl: process.env.APP_URL,
             clientId: process.env.CLIENT_ID,
+            vapidKey: process.env.VAPID_KEY,
         }),
     },
     module: {
@@ -48,6 +49,14 @@ module.exports = {
             template: "./src/app.ejs",
             filename: "./spotify/index.html",
         }),
+        new HtmlWebPackPlugin({
+            chunks: ["faq"],
+            template: "./src/faq.ejs",
+            filename: "./faq/index.html",
+            templateParameters: {
+                appUrl: process.env.APP_URL,
+            },
+        }),
         new CopyWebpackPlugin({
             patterns: [
                 {from: "./src/assets"},
@@ -57,17 +66,7 @@ module.exports = {
     entry: {
         landing: ["babel-polyfill", "./src/index.js"],
         app: ["babel-polyfill", "./src/spotify.js"],
+        faq: ["babel-polyfill", "./src/faq.js"],
+        "service-worker": ["babel-polyfill", "./src/service-worker.js"],
     },
-    optimization: {
-        splitChunks: {
-            chunks: "all",
-        },
-    },
-    devServer: {
-        // start development server on the specified port
-        port: 9000,
-        open: false,
-    },
-    // enable source maps to aid in debugging
-    devtool: "source-map",
 };

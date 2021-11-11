@@ -16,7 +16,7 @@ ideas for making pull requests.
 1. Visit the Spotify developer dashboard and create an application and set the callback url
    to `http://localhost:9000/spotify`, you'll need the client ID for your app later.
 2. Download the project: `git clone git@github.com:Roshy10/taylors-version.git`
-3. Go to webpack.config.js and set `externals.config.appUrl` to `http://localhost:9000` and `externals.config.clientId`
+3. Go to webpack.common.js and set `externals.config.appUrl` to `http://localhost:9000` and `externals.config.clientId`
    to the one you generated earlier (or if you use an IDE like Webstorm, you can set the environment variables yourself
    in your run configuration)
 4. run `npm install`

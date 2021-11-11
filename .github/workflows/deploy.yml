@@ -15,30 +15,37 @@ jobs:
         run: npm ci
       - name: eslint
         run: npm run lint
-      - name: check language files
-        run: npm run verify-i18n
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
-      - name: Use Node.js 15.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: 16
       - name: Install Dependencies
         run: npm ci
+      - name: Build app Adhoc
+        if: github.ref != 'refs/heads/develop' && github.ref != 'refs/heads/master'
+        env:
+          APP_URL: https://adhoc.taylors-version.com
+          CLIENT_ID: 16f4e583e3fa477d9f9622d49167854d
+          VAPID_KEY: ${{ secrets.ADHOC_VAPID_PUBLIC_KEY }}
+        run: npm run build
       - name: Build app Staging
         if: github.ref == 'refs/heads/develop'
         env:
           APP_URL: https://staging.taylors-version.com
           CLIENT_ID: 8c8f303eba3b4e1bab345f245d4b1036
+          VAPID_KEY: ${{ secrets.STAGING_VAPID_PUBLIC_KEY }}
         run: npm run build
       - name: Build app Prod
         if: github.ref == 'refs/heads/master'
         env:
           APP_URL: https://taylors-version.com
           CLIENT_ID: 1b5718d03b174bfb8988f14bfac422a6
+          VAPID_KEY: ${{ secrets.PROD_VAPID_PUBLIC_KEY }}
         run: npm run build
       - name: Push build artifacts
         uses: actions/upload-artifact@v2
@@ -65,16 +72,33 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-west-1
-      - name: Use Node.js 15.x
+      - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: 15
+          node-version: 16
+      - name: Install lambda
+        working-directory: cdk/lib/lambda/notification-dispatcher
+        run: |
+          npm ci
       - name: Install and build CDK
         working-directory: cdk
         run: |
           npm install -g aws-cdk
           npm ci
           npm run build
+      - name: Deploy stack Adhoc
+        if: github.ref != 'refs/heads/develop' && github.ref != 'refs/heads/master'
+        working-directory: cdk
+        env:
+          CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
+          CDK_DEPLOY_REGION: eu-west-1
+          PROD: false
+          VAPID_PUBLIC_KEY: ${{ secrets.ADHOC_VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.ADHOC_VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
+        run: |
+          cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1 -c domain=taylors-version.com -c subdomain=adhoc
+          cdk deploy TaylorsVersionAdhoc -c domain=taylors-version.com -c subdomain=adhoc --require-approval never
       - name: Deploy stack Staging
         if: github.ref == 'refs/heads/develop'
         working-directory: cdk
@@ -82,6 +106,9 @@ jobs:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CDK_DEPLOY_REGION: eu-west-1
           PROD: false
+          VAPID_PUBLIC_KEY: ${{ secrets.STAGING_VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.STAGING_VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
         run: |
           cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1 -c domain=taylors-version.com -c subdomain=staging
           cdk deploy TaylorsVersionStaging -c domain=taylors-version.com -c subdomain=staging --require-approval never
@@ -92,6 +119,9 @@ jobs:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CDK_DEPLOY_REGION: eu-west-1
           PROD: true
+          VAPID_PUBLIC_KEY: ${{ secrets.PROD_PUBLIC_PRIVATE_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.PROD_VAPID_PRIVATE_KEY }}
+          VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
         run: |
           cdk bootstrap aws://${{ secrets.AWS_ACCOUNT_ID }}/eu-west-1 -c domain=taylors-version.com
           cdk deploy TaylorsVersionProd -c domain=taylors-version.com --require-approval never

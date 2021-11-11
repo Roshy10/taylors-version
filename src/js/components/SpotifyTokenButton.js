@@ -1,6 +1,9 @@
 import {Button} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import clsx from "clsx";
 import config from "config";
 import {isEmpty} from "lodash";
+import PropTypes from "prop-types";
 import React, {useEffect, useMemo} from "react";
 import {useTranslation} from "react-i18next";
 import {v4 as uuidv4} from "uuid";
@@ -20,9 +23,17 @@ const permissionScopes = [
 ];
 const baseAuthURL = "https://accounts.spotify.com/authorize";
 
-export const SpotifyTokenButton = (props) => {
+const useStyles = makeStyles((theme) => ({
+    button: {
+        color: theme.palette.primary.main,
+        backgroundColor: theme.palette.common.white,
+    },
+}));
+
+export const SpotifyTokenButton = ({className, ...otherProps}) => {
     const {t} = useTranslation();
     const [state, setState] = useStickyState("spotifyState");
+    const classes = useStyles();
 
     const authUrl = useMemo(() => {
         const url = new URL(baseAuthURL);
@@ -43,14 +54,19 @@ export const SpotifyTokenButton = (props) => {
 
     return (
         <Button
-            endIcon={<SpotifyIcon/>}
+            className={clsx(classes.button, className)}
             href={authUrl}
-            variant="outlined"
-            {...props}
+            startIcon={<SpotifyIcon/>}
+            variant="contained"
+            {...otherProps}
         >
             {t("authorize.startButton")}
         </Button>
     );
+};
+
+SpotifyTokenButton.propTypes = {
+    className: PropTypes.string,
 };
 
 export default SpotifyTokenButton;

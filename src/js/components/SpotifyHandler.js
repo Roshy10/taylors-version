@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {storeToken} from "../actions/AuthActions";
 import useAuthToken from "../hooks/useAuthToken";
 import useStickyState from "../hooks/useStickyState";
-import ConfigurePage from "./ConfigurePage";
+import AppLayout from "./AppLayout";
 
 const redirectHome = () => window.location.replace(config.appUrl);
 
@@ -41,7 +41,7 @@ const SpotifyHandler = () => {
         }
     }, [accessToken]);
 
-    return token ? <ConfigurePage/> : null;
+    return token ? <AppLayout/> : null;
 };
 
 export default SpotifyHandler;

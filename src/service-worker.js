@@ -14,7 +14,8 @@ self.addEventListener("push", function(event) {
         tag: message.snsId,
     };
 
-    self.registration.showNotification(message.title, options);
+    const promiseChain = self.registration.showNotification(message.title, options);
+    event.waitUntil(promiseChain);
 });
 
 self.addEventListener("notificationclick", function(event) {

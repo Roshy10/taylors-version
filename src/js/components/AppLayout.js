@@ -1,4 +1,4 @@
-import {Backdrop, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
+import {Backdrop, Box, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Close, Tune} from "@material-ui/icons";
 import clsx from "clsx";
@@ -8,8 +8,9 @@ import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
 import BasicPage from "./BasicPage";
+import PlaylistList from "./music/PlaylistList";
 import Notifications from "./Notifications";
-import PlaylistList from "./PlaylistList";
+import PushPrompt from "./push/PushPrompt";
 import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,13 +37,18 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(1),
         },
     },
-    noneFound: {
-        fontSize: "2rem",
+    noneFoundContainer: {
         textAlign: "center",
+    },
+    noneFoundMessage: {
+        fontSize: "2rem",
         marginTop: theme.spacing(1),
         [theme.breakpoints.down("xs")]: {
             fontSize: "1.5rem",
         },
+    },
+    noneFoundButton: {
+        marginTop: theme.spacing(2),
     },
     backdrop: {
         zIndex: theme.zIndex.tooltip + 1,
@@ -50,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const ConfigurePage = () => {
+export const AppLayout = () => {
     const {t} = useTranslation();
     const classes = useStyles();
     const compactFilters = useMediaQuery((theme) => theme.breakpoints.down("md"));
@@ -165,9 +171,14 @@ export const ConfigurePage = () => {
                     excludedPlaylists={excludedPlaylists}
                     toggleExcludedPlaylist={toggleExcludedPlaylist}
                 />
-                : <Typography className={classes.noneFound}>
-                    {t("process.configure.noneFound")}
-                </Typography>
+                : <Box className={classes.noneFoundContainer}>
+                    <Typography className={classes.noneFoundMessage}>
+                        {t("process.configure.noneFound")}
+                    </Typography>
+                    <Box className={classes.noneFoundButton}>
+                        <PushPrompt lightTheme/>
+                    </Box>
+                </Box>
             }
             <Backdrop className={classes.backdrop} open={loading}>
                 <CircularProgress/>
@@ -177,4 +188,4 @@ export const ConfigurePage = () => {
     );
 };
 
-export default ConfigurePage;
+export default AppLayout;

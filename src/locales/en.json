@@ -48,6 +48,30 @@
       }
     },
     "shareMessage": "All my playlists use (Taylor's Version)",
+    "pushNotifications": {
+      "prompt": "Stay Updated",
+      "prompt_unsubscribe": "Unsubscribe",
+      "snackbar": {
+        "subscribe": {
+          "success": "Notifications enabled successfully",
+          "error": "Unable to subscribe to notifications"
+        },
+        "unsubscribe": {
+          "success": "Unsubscribed from notifications",
+          "error": "Failure while unsubscribing from notifications, please try again or revoke the permission from the browser"
+        }
+      },
+      "dialog": {
+        "title": "Subscribe to Updates?",
+        "title_unsubscribe": "Unsubscribe from updates?",
+        "message": "Sign up for push notifications to let you know when we have updated to Taylor's latest album.<0/><0/>We will never send spam or adverts.",
+        "message_unsubscribe": "Do you wish to stop receiving notifications when this website is updated?",
+        "confirm": "Notify Me",
+        "confirm_unsubscribe": "Unsubscribe",
+        "deny": "No Thanks",
+        "deny_unsubscribe": "Stay Subscribed"
+      }
+    },
     "faq": {
       "title": "Frequently Asked Questions",
       "data": [
@@ -66,21 +90,29 @@
           ]
         },
         {
-          "q": "How quickly will this website be available after release?",
+          "q": "How quickly will this website be available after a new release?",
           "a": [
             "I keep an eye out for Taylor's new releases, but I have no idea what the new songs spotify IDs will be until everyone else does, so I need to update this website each time.",
-            "I try and update it as soon as possible (within 12 hours), but you can check for the latest updates on the homepage, or sign up for notifications as soon as we update to the latest music."
+            "I try and update it as soon as possible (within 12 hours), but you can check for the latest updates on the homepage, or sign up for notifications as soon as this site is updated with the latest music."
           ]
         },
         {
           "q": "Will you add Apple/Amazon/Tidal support? ",
-          "a": "Originally I was planning to support as many music services as possible, but unfortunately most of them don't have an adequate API that allows music in playlists to be swapped, so it's impossible to make this work with them."
+          "a": "Originally I was planning to support as many music services as possible, but unfortunately most of them don't have the functionality that allows music in playlists to be swapped, so it's impossible to make this work with them."
         },
         {
           "q": "Are you stealing/harvesting my data? How do I know this is safe?",
           "a": [
             "I made this project out of the desire to learn new things and make something cool that other people might find helpful.",
-            "I have absolutely no desire to monetise this or collect/sell user data, but if you don't believe me you can check out the source on github, or even run this yourself!"
+            "I have absolutely no desire to monetise this or collect/sell user data, but if you don't believe me you can check out the source on Github, or even run this yourself!"
+          ]
+        },
+        {
+          "q": "How do notifications work?",
+          "a": [
+            "Once you subscribe to notifications it allows me to let you know when the website is updated to support the latest music from Taylor.",
+            "I will only send one notification for each music release and will never send spam, however you can unsubscribe at any time by clicking the button again if you want to.",
+            "Unfortunately Apple doesn't currently allow push notifications from websites, so this feature isn't available on Apple devices."
           ]
         },
         {

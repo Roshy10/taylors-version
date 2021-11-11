@@ -7,6 +7,7 @@ module.exports = {
         config: JSON.stringify({
             appUrl: process.env.APP_URL,
             clientId: process.env.CLIENT_ID,
+            vapidKey: process.env.VAPID_KEY,
         }),
     },
     module: {
@@ -66,18 +67,6 @@ module.exports = {
         landing: ["babel-polyfill", "./src/index.js"],
         app: ["babel-polyfill", "./src/spotify.js"],
         faq: ["babel-polyfill", "./src/faq.js"],
+        "service-worker": ["babel-polyfill", "./src/service-worker.js"],
     },
-    optimization: {
-        splitChunks: {
-            chunks: "all",
-        },
-    },
-    devServer: {
-        // start development server on the specified port
-        port: 9000,
-        open: false,
-        https: true,
-    },
-    // enable source maps to aid in debugging
-    devtool: "source-map",
 };

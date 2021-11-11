@@ -7,18 +7,20 @@ import SocialBar from "./SocialBar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        position: "absolute",
-        bottom: theme.spacing(2),
+        position: "fixed",
+        bottom: 0,
+        paddingBottom: theme.spacing(2),
         color: theme.palette.common.white,
         left: 0,
         right: 0,
         [theme.breakpoints.down("xs")]: {
-            bottom: theme.spacing(1),
+            paddingBottom: theme.spacing(1),
         },
     },
     itemContainer: {
         display: "flex",
         justifyContent: "space-evenly",
+
     },
     footerItem: {
         color: theme.palette.common.white,

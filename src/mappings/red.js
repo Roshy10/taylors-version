@@ -1,7 +1,7 @@
 const red = [
     {
         // State Of Grace
-        "replacement": "placeholder",
+        "replacement": "spotify:track:6lzc0Al0zfZOIFsFvBS1ki",
         "originals": [
             "spotify:track:786NsUYn4GGUf8AOt0SQhP",
             "spotify:track:0b16LTzby1YRVd2nq2Z0fw",
@@ -13,7 +13,7 @@ const red = [
     },
     {
         // Red
-        "replacement": "placeholder",
+        "replacement": "spotify:track:4OAuvHryIVv4kMDNSLuPt6",
         "originals": [
             "spotify:track:02GbViU2AsA2cWXtyUzkDo",
             "spotify:track:1RvQQGwaPipiNgz8RXAKA8",
@@ -25,7 +25,7 @@ const red = [
     },
     {
         // Treacherous
-        "replacement": "placeholder",
+        "replacement": "spotify:track:3S7HNKPakdwNEBFIVTL6dZ",
         "originals": [
             "spotify:track:5kYFVSQoPu7yRpfiHBwMUk",
             "spotify:track:6xlCHgsZanRIBaS3yokshA",
@@ -36,7 +36,7 @@ const red = [
     },
     {
         // I Knew You Were Trouble
-        "replacement": "placeholder",
+        "replacement": "spotify:track:6AtZLIzUINvExIUy4QhdjP",
         "originals": [
             "spotify:track:0ciHz919LVKoH4zgxyMPZ9",
             "spotify:track:2o2IVjuqRkR9hJxtPjtAP0",
@@ -49,7 +49,7 @@ const red = [
     },
     {
         // All Too Well
-        "replacement": "placeholder",
+        "replacement": "spotify:track:3nsfB1vus2qaloUdcBZvDu",
         "originals": [
             "spotify:track:00vJzaoxM3Eja1doBUhX0P",
             "spotify:track:7HH8rEmkK5JENnv869MDCz",
@@ -60,7 +60,7 @@ const red = [
     },
     {
         // 22
-        "replacement": "placeholder",
+        "replacement": "spotify:track:3yII7UwgLF6K5zW3xad3MP",
         "originals": [
             "spotify:track:3WC5CVAahvn98hiseoIvbw",
             "spotify:track:2ULNeSomDxVNmdDy8VxEBU",
@@ -71,7 +71,7 @@ const red = [
     },
     {
         // I Almost Do
-        "replacement": "placeholder",
+        "replacement": "spotify:track:2r9CbjYgFhtAmcFv1cSquB",
         "originals": [
             "spotify:track:4Ar3jciiuPXAMGjQpMWo34",
             "spotify:track:1eyqSYBCTane4rl4vc6PWJ",
@@ -81,7 +81,7 @@ const red = [
     },
     {
         // We Are Never Ever Getting Back Together
-        "replacement": "placeholder",
+        "replacement": "spotify:track:5YqltLsjdqFtvqE7Nrysvs",
         "originals": [
             "spotify:track:6U1sV6To5PiDattw67fHYF",
             "spotify:track:0VwNdo84DaVYLIkbVO86ND",
@@ -96,7 +96,7 @@ const red = [
     },
     {
         // Stay Stay Stay
-        "replacement": "placeholder",
+        "replacement": "spotify:track:7eQj6r5PIdYKEIZjucBMcq",
         "originals": [
             "spotify:track:0F2S1QlnMaOfmNHIgmES3k",
             "spotify:track:5A4PQqcpYb0vD1zx5DlObS",
@@ -106,7 +106,7 @@ const red = [
     },
     {
         // The Last Time
-        "replacement": "placeholder",
+        "replacement": "spotify:track:0y6kdSRCVQhSsHSpWvTUm7",
         "originals": [
             "spotify:track:7vvIpJZye5cRR6De1LKM0m",
             "spotify:track:4L9QDCVNWIFhf2yr8iMvzA",
@@ -117,7 +117,7 @@ const red = [
     },
     {
         // Holy Ground
-        "replacement": "placeholder",
+        "replacement": "spotify:track:7J4b3LVCIGO4CMBDFLPoP6",
         "originals": [
             "spotify:track:1fGsZsIkQkOspfsT24nQP6",
             "spotify:track:4hCZk6WJBFQeG3P7WsyntI",
@@ -128,7 +128,7 @@ const red = [
     },
     {
         // Sad Beautiful Tragic
-        "replacement": "placeholder",
+        "replacement": "spotify:track:73qMN9bXy7MSPwwGfH3wQr",
         "originals": [
             "spotify:track:5QKhg4r4Ibt0LVTmWEXTEg",
             "spotify:track:6LKjHhOW1az75pCQ9XJJtF",
@@ -138,7 +138,7 @@ const red = [
     },
     {
         // The Lucky One
-        "replacement": "placeholder",
+        "replacement": "spotify:track:4e5ayHsOLJNLTGfjau2mEw",
         "originals": [
             "spotify:track:2X2J0BhxaLTmnxO4pPUhSd",
             "spotify:track:5VQLMrWhailAhErKNUSnv1",
@@ -149,7 +149,7 @@ const red = [
     },
     {
         // Everything Has Changed
-        "replacement": "placeholder",
+        "replacement": "spotify:track:7qEUFOVcxRI19tbT68JcYK",
         "originals": [
             "spotify:track:5PjfMmF06QtxTPZBZHdhoZ",
             "spotify:track:4NAmRvqSITAAzKWnC8yRq3",
@@ -159,7 +159,7 @@ const red = [
     },
     {
         // Starlight
-        "replacement": "placeholder",
+        "replacement": "spotify:track:7A2cNLRT0YJc1yjxHlKihs",
         "originals": [
             "spotify:track:7txpzmA69zyk50K3ZyZSzC",
             "spotify:track:0vqI4ZIMuifeKeItGiWbPj",
@@ -170,7 +170,7 @@ const red = [
     },
     {
         // Begin Again
-        "replacement": "placeholder",
+        "replacement": "spotify:track:05GsNucq8Bngd9fnd4fRa0",
         "originals": [
             "spotify:track:0CaCvfi76DwFFlBaTGr2OW",
             "spotify:track:1yG491M3fRfowMdGN5pey4",
@@ -183,7 +183,7 @@ const red = [
     },
     {
         // The Moment I Knew
-        "replacement": "placeholder",
+        "replacement": "spotify:track:0NRHj8hDwwmSPaA41o379r",
         "originals": [
             "spotify:track:5AsmAjBSSQjRPWgAYIp8tm",
             "spotify:track:4qTAwKJQ68gmnrnfPD3vlO",
@@ -191,7 +191,7 @@ const red = [
     },
     {
         // Come Back...Be Here
-        "replacement": "placeholder",
+        "replacement": "spotify:track:placeholder",
         "originals": [
             "spotify:track:5hiqtrACtMJkNpaNHj0n9Z",
             "spotify:track:1n8rB9AhxiAvVP1E2c3yOd",
@@ -200,7 +200,7 @@ const red = [
     },
     {
         // Girl At Home
-        "replacement": "placeholder",
+        "replacement": "spotify:track:4pNApnaUWAL2J4KO2eqokq",
         "originals": [
             "spotify:track:6cf6rLb8qcklvJv90W6HCW",
             "spotify:track:6VFpuI0DDmbC5UyWZQ4IRY",
@@ -224,7 +224,7 @@ const red = [
     },
     {
         // State Of Grace - Acoustic
-        "replacement": "placeholder",
+        "replacement": "spotify:track:5jAIouBES8LWMiriuNq170",
         "originals": [
             "spotify:track:6XUWEa9gcyyN8jekTsGEJG",
             "spotify:track:5G9AVKld9q7DCrmoY42raf",

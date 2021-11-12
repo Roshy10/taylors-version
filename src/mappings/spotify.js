@@ -1,4 +1,5 @@
 import fearless from "./fearless";
+import red from "./red";
 
 const spotify = [
     // Single - Wildest Dreams
@@ -20,7 +21,7 @@ const spotify = [
         ],
     },
     ...fearless,
-    //...red
+    ...red,
 ];
 
 export default spotify;

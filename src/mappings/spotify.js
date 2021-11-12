@@ -20,7 +20,7 @@ const spotify = [
         ],
     },
     ...fearless,
-    //...red
+    ...red
 ];
 
 export default spotify;

@@ -1,4 +1,5 @@
 import fearless from "./fearless";
+import red from "./red";
 
 const spotify = [
     // Single - Wildest Dreams
@@ -19,15 +20,8 @@ const spotify = [
             "spotify:track:3ScVaMDQwaD8iumBYzcDvr",
         ],
     },
-    // Single - Ronan
-    {
-        "replacement": "spotify:track:7nWui6jiMM2m9qFmET1Mtj",
-        "originals": [
-            "spotify:track:0Nw8hv79MLJa1yjtsEgz08"
-        ],
-    },
     ...fearless,
-    ...red
+    ...red,
 ];
 
 export default spotify;

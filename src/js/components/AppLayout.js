@@ -16,6 +16,7 @@ import UpdatePlaylistsDialog from "./UpdatePlaylistsDialog";
 const useStyles = makeStyles((theme) => ({
     filterButton: {
         float: "right",
+        color: "unset",
     },
     updateButton: {
         marginTop: theme.spacing(1.5),

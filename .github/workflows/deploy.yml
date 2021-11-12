@@ -119,7 +119,7 @@ jobs:
           CDK_DEPLOY_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CDK_DEPLOY_REGION: eu-west-1
           PROD: true
-          VAPID_PUBLIC_KEY: ${{ secrets.PROD_PUBLIC_PRIVATE_KEY }}
+          VAPID_PUBLIC_KEY: ${{ secrets.PROD_VAPID_PUBLIC_KEY }}
           VAPID_PRIVATE_KEY: ${{ secrets.PROD_VAPID_PRIVATE_KEY }}
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
         run: |

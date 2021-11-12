@@ -42,5 +42,12 @@ exports.handler = async (event) => {
     });
 
     await Promise.all(promises);
+    const result = promises.reduce((total, value) => {
+        const response = value.statusCode;
+        total[response] = (total[response] || 0) + 1;
+        return total;
+    }, {});
+    console.log(result);
+
     // TODO add functionality to delete on 410
 };

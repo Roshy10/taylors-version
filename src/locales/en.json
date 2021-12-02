@@ -35,7 +35,8 @@
         "includeCollaborative": "Your Collaborative Playlists",
         "includeOthers": "Other's Collaborative Playlists",
         "includePublic": "Your Public playlists",
-        "noneFound": "Looks like your playlists are already Taylorized!"
+        "noneFound": "Looks like your playlists are already Taylorized!",
+        "complete": "Your playlists have been Taylorized!"
       },
       "update": {
         "dialogBody": "This will update one song to it's (Taylor's Version).",

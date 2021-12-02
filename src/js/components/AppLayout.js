@@ -1,4 +1,4 @@
-import {Backdrop, Box, CircularProgress, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
+import {Backdrop, Box, Collapse, FormControlLabel, FormGroup, IconButton, Switch, Typography, useMediaQuery} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {Close, Tune} from "@material-ui/icons";
 import clsx from "clsx";
@@ -7,7 +7,9 @@ import React, {Fragment, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
 import {getAllTracksForPlaylists, getPlaylists} from "../actions/PlaylistActions";
+import {updateReset} from "../actions/UpdateActions";
 import BasicPage from "./BasicPage";
+import CircularProgressWithLabel from "./CircularProgressWithLabel";
 import PlaylistList from "./music/PlaylistList";
 import Notifications from "./Notifications";
 import PushPrompt from "./push/PushPrompt";
@@ -62,9 +64,12 @@ export const AppLayout = () => {
     const classes = useStyles();
     const compactFilters = useMediaQuery((theme) => theme.breakpoints.down("md"));
     const dispatch = useDispatch();
+    const updateComplete = useSelector(state => state.UpdateReducer.updateComplete) !== null;
     const playlists = useSelector(state => state.PlaylistReducer.playlists);
     const userId = useSelector(state => state.AuthReducer.id);
-    const loading = useSelector(state => state.HttpReducer.inFlight) > 0;
+    const requests = useSelector(state => state.HttpReducer);
+    const loading = requests.inFlight > 0;
+    const loadingPercent = ((requests.totalSent - requests.inFlight) * 100) / requests.totalSent;
     const [includePublic, setIncludePublic] = useState(true);
     const [includeCollab, setIncludeCollab] = useState(true);
     const [includeOthers, setIncludeOthers] = useState(false);
@@ -74,6 +79,7 @@ export const AppLayout = () => {
     useEffect(() => {
         // make request for all of the user's playlists
         dispatch(getPlaylists());
+        dispatch(updateReset);
     }, []);
 
     // filter them according to the provided props
@@ -174,7 +180,7 @@ export const AppLayout = () => {
                 />
                 : <Box className={classes.noneFoundContainer}>
                     <Typography className={classes.noneFoundMessage}>
-                        {t("process.configure.noneFound")}
+                        {t(updateComplete ? "process.configure.complete" : "process.configure.noneFound")}
                     </Typography>
                     <Box className={classes.noneFoundButton}>
                         <PushPrompt lightTheme/>
@@ -182,7 +188,7 @@ export const AppLayout = () => {
                 </Box>
             }
             <Backdrop className={classes.backdrop} open={loading}>
-                <CircularProgress/>
+                <CircularProgressWithLabel value={loadingPercent}/>
             </Backdrop>
             <Notifications/>
         </BasicPage>

@@ -2,9 +2,11 @@ import {buffers} from "@redux-saga/core";
 import {chunk, find, reverse, sortBy, uniq} from "lodash";
 import {actionChannel, all, call, delay, put, race, take, takeEvery} from "redux-saga/effects";
 import spotify from "../../mappings/spotify";
+import {resetStats} from "../actions/HttpActions";
 import {showSnackbar} from "../actions/NotificationActions";
-import {getPlaylists, purgePlaylists} from "../actions/PlaylistActions";
+import {purgePlaylists} from "../actions/PlaylistActions";
 import {deleteTracks, insertTrack, replacementFailure} from "../actions/ReplacementActions";
+import {updateComplete} from "../actions/UpdateActions";
 import {makeRequest} from "./HttpSaga";
 
 function* dispatchPlaylistReplacement(playlist) {
@@ -58,6 +60,9 @@ function* dispatchReplacements(action) {
     //  please raise an issue or PR if you know how to make it suck less
     //  https://github.com/Roshy10/taylors-version/issues/5
 
+    // clear the counter for the progress bar
+    yield put(resetStats);
+
     // start listening for failure actions
     const requestChan = yield actionChannel(replacementFailure().type, buffers.dropping(1));
 
@@ -73,14 +78,13 @@ function* dispatchReplacements(action) {
     // empty out the playlists we have saved from the store
     yield put(purgePlaylists());
 
-    // re-fetch the latest state of the user's playlists
-    yield put(getPlaylists());
-
     if (success) {
         process.env.NODE_ENV !== "production" && console.log("playlist updating complete");
+        yield put(updateComplete(true));
         yield put(showSnackbar("success", "notifications.replacement.success"));
     } else {
         process.env.NODE_ENV !== "production" && console.log("playlist updating completed with errors");
+        yield put(updateComplete(false));
         yield put(showSnackbar("warning", "notifications.replacement.failure"));
     }
 

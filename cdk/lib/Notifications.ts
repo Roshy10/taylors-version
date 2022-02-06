@@ -4,8 +4,12 @@ import * as dynamodb from '@aws-cdk/aws-dynamodb';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigateway from '@aws-cdk/aws-apigateway';
 import * as sns from '@aws-cdk/aws-sns';
+import * as sqs from '@aws-cdk/aws-sqs';
 import * as subs from '@aws-cdk/aws-sns-subscriptions';
 import * as path from 'path';
+import {SqsEventSource} from '@aws-cdk/aws-lambda-event-sources';
+
+const DISPATCHER_TIMEOUT_MINUTES = 1
 
 /**
  * Notifications backend
@@ -18,7 +22,7 @@ class Notifications extends cdk.Construct {
     constructor(parent: cdk.Construct, name: string) {
         super(parent, name);
 
-        // Notification Database
+        // Subscription Database
         const subscriptionTable = new dynamodb.Table(this, 'SubscriptionTable', {
             partitionKey: {name: 'topic', type: dynamodb.AttributeType.STRING},
             sortKey: {name: "endpoint", type: dynamodb.AttributeType.STRING},
@@ -27,12 +31,50 @@ class Notifications extends cdk.Construct {
             removalPolicy: cdk.RemovalPolicy.RETAIN,
         });
 
+        // Notification Logs
+        const notificationTable = new dynamodb.Table(this, 'NotificationTable', {
+            partitionKey: {name: 'messageId', type: dynamodb.AttributeType.STRING},
+            sortKey: {name: 'eventType', type: dynamodb.AttributeType.STRING},
+            billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+            pointInTimeRecovery: true,
+            removalPolicy: cdk.RemovalPolicy.RETAIN,
+        });
+
         // sns to create notifications
         const notificationTopic = new sns.Topic(this, "NotificationTopic");
 
+        // DLQ for persistent failures, gives 4 days to fix errors and redrive notifications
+        const notificationDispatchDeadLetterQueue = new sqs.Queue(this, "NotificationDispatchDLQ")
+
+        // sqs queue to hold outgoing notification
+        const notificationDispatchQueue = new sqs.Queue(this, "NotificationDispatchQueue", {
+            visibilityTimeout: cdk.Duration.minutes(DISPATCHER_TIMEOUT_MINUTES * 3),
+            deadLetterQueue: {
+                maxReceiveCount: 3,
+                queue: notificationDispatchDeadLetterQueue
+            }
+        })
+
+        // lambda to queue notifications
+        const notificationQueuer = new lambda.Function(this, 'NotificationQueuer', {
+            runtime: lambda.Runtime.NODEJS_14_X,
+            handler: 'index.handler',
+            code: lambda.Code.fromAsset(path.join(__dirname, 'lambda/notification-queuer')),
+            environment: {
+                "SUBSCRIPTION_TABLE_NAME": subscriptionTable.tableName,
+                "NOTIFICATION_TABLE_NAME": notificationTable.tableName,
+                "DISPATCH_QUEUE_URL": notificationDispatchQueue.queueUrl
+            },
+            timeout: cdk.Duration.minutes(1)
+        });
+        subscriptionTable.grantReadData(notificationQueuer)
+        notificationTable.grantWriteData(notificationQueuer)
+        notificationDispatchQueue.grantSendMessages(notificationQueuer)
+        notificationTopic.addSubscription(new subs.LambdaSubscription(notificationQueuer))
+
         // lambda to send notifications
         const notificationDispatcher = new lambda.Function(this, 'NotificationDispatcher', {
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_14_X,
             handler: 'index.handler',
             code: lambda.Code.fromAsset(path.join(__dirname, 'lambda/notification-dispatcher')),
             environment: {
@@ -40,14 +82,19 @@ class Notifications extends cdk.Construct {
                 "VAPID_SUBJECT": process.env.VAPID_SUBJECT || "",
                 "VAPID_PUBLIC_KEY": process.env.VAPID_PUBLIC_KEY || "",
                 "VAPID_PRIVATE_KEY": process.env.VAPID_PRIVATE_KEY || "",
-            }
+            },
+            timeout: cdk.Duration.minutes(DISPATCHER_TIMEOUT_MINUTES)
         });
-        subscriptionTable.grantReadData(notificationDispatcher)
-        notificationTopic.addSubscription(new subs.LambdaSubscription(notificationDispatcher))
+        subscriptionTable.grantWriteData(notificationDispatcher)
+        notificationDispatcher.addEventSource(new SqsEventSource(notificationDispatchQueue, {
+            batchSize: 10,
+            maxBatchingWindow: cdk.Duration.minutes(5),
+            reportBatchItemFailures: true,
+        }))
 
         // lambda to save incoming subscriptions
         const subscriptionHandler = new lambda.Function(this, 'SubscriptionHandler', {
-            runtime: lambda.Runtime.NODEJS_12_X,
+            runtime: lambda.Runtime.NODEJS_14_X,
             handler: 'index.handler',
             code: lambda.Code.fromAsset(path.join(__dirname, 'lambda/notification-subscription-handler')),
             environment: {"SUBSCRIPTION_TABLE_NAME": subscriptionTable.tableName}

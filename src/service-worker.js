@@ -21,7 +21,7 @@ self.addEventListener("push", function(event) {
 self.addEventListener("notificationclick", function(event) {
     event.notification.close();
     // eslint-disable-next-line no-undef
-    const promiseChain = clients.openWindow("/");
+    const promiseChain = clients.openWindow("/?src=push");
     event.waitUntil(promiseChain);
 });
 

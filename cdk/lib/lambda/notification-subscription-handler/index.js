@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 
-const dynamo = new AWS.DynamoDB.DocumentClient();
+const dynamodb = new AWS.DynamoDB.DocumentClient();
 let tableName = process.env.SUBSCRIPTION_TABLE_NAME;
 const topic = "updates";
 
@@ -8,7 +8,7 @@ const getEndpoint = (data) => (JSON.parse(data.webPush) && JSON.parse(data.webPu
 
 const insertSubscription = async (data) => {
     const endpoint = getEndpoint(data);
-    return await dynamo
+    return await dynamodb
         .put({
             TableName: tableName,
             Item: {
@@ -20,8 +20,8 @@ const insertSubscription = async (data) => {
         .promise();
 };
 
-const deleteSubscription = async (endpoint) => {
-    return await dynamo
+const deleteSubscription = async (endpoint) =>
+    await dynamodb
         .delete({
             TableName: tableName,
             Key: {
@@ -30,7 +30,6 @@ const deleteSubscription = async (endpoint) => {
             },
         })
         .promise();
-};
 
 exports.handler = async (event) => {
     const body = {};

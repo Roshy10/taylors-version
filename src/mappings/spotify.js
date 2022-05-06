@@ -20,6 +20,26 @@ const spotify = [
             "spotify:track:3ScVaMDQwaD8iumBYzcDvr",
         ],
     },
+    // Single - This Love
+    {
+        "replacement": "spotify:track:4d1CG5ei1E2vGbvmgf5KKv",
+        "originals": [
+            // 1989
+            "spotify:track:7lTxQZVXlvIX7Z3szSy8Sh",
+            // 1989 (Deluxe)
+            "spotify:track:4L560fic5PaTuCFm6CviKa",
+            // 1989 North America
+            "spotify:track:3oKMl2tJv4fdidkXUYMI5x",
+            // 1989 (Deluxe) North America
+            "spotify:track:1kTPQnabROVkW9bUXdCGrB",
+            // 1989 (Deluxe Edition) Canada
+            "spotify:track:28VqgFAhYCU7FdAm7dvEjp",
+            // rep surprise playlist
+            "spotify:track:64KRxmbqypPBlya4nxFmDn",
+            // BMRRS
+            "spotify:track:5yCRSEPJXzjzl3Gov0YduA",
+        ],
+    },
     ...fearless,
     ...red,
 ];

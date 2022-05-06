@@ -4,6 +4,7 @@ import HttpReducer from "./HttpReducer";
 import NotificationReducer from "./NotificationReducer";
 import PlaylistReducer from "./PlaylistReducer";
 import TrackReducer from "./TrackReducer";
+import UpdateReducer from "./UpdateReducer";
 
 const rootReducer = combineReducers({
     AuthReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     NotificationReducer,
     PlaylistReducer,
     TrackReducer,
+    UpdateReducer,
 });
 
 export default rootReducer;

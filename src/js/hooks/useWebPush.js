@@ -30,10 +30,6 @@ const useWebPush = () => {
 
     navigator.serviceWorker.ready
         .then((reg) => reg.pushManager.getSubscription())
-        .then(console.debug);
-
-    navigator.serviceWorker.ready
-        .then((reg) => reg.pushManager.getSubscription())
         .then((subscription) => setIsSubscribed(Boolean(subscription)))
         .catch(() => setIsSubscribed(false));
 

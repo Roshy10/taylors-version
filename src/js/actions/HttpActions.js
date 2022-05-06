@@ -34,3 +34,7 @@ export const sent = ({
 export const received = ({
     type: "HTTP/RECEIVED",
 });
+
+export const resetStats = ({
+    type: "HTTP/RESET_TOTAL",
+});

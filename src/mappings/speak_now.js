@@ -7,10 +7,6 @@ const speak_now = [
             "spotify:track:0dBW6ZsW8skfvoRfgeerBF",
             // Original Deluxe
             "spotify:track:6LZaxlycSWrJZ4Volb25qx",
-            // Original Deluxe (Pop Mix)
-            "spotify:track:0fAbfDiuQiUwV7FUcFfRGY",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:7yndkPYP6YQQLBpPsizDfh",
             // Repuation Stadium Tour Surprise Song
             "spotify:track:6FmJKLpyCt42nP2IOVEVc2",
             // BMRRS
@@ -25,8 +21,6 @@ const speak_now = [
             "spotify:track:6d9IiDcFxtFVIvt9pCqyGH",
             // Original Deluxe
             "spotify:track:1q8E1FfFuhd12c5JcJwPxQ",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:1aBJNc2thaKyh5THWzIqHX",
             // Repuation Stadium Tour Surprise Song
             "spotify:track:5h2sBwpUSAndjObfU3ti2r",
             // BMRRS
@@ -41,8 +35,6 @@ const speak_now = [
             "spotify:track:3DrjZArsPsoqbLzUZZV1Id",
             // Original Deluxe
             "spotify:track:7lxADouiWFkwR7ZV2GKUcH",
-            // Original Deluxe (Acoustic)
-            "spotify:track:6IH2Z54gYPLqgJtxZjX80i",
             // BMRRS
             "spotify:track:6OVJMTfXU9rbYI51AoEuLH",
         ],
@@ -55,8 +47,6 @@ const speak_now = [
             "spotify:track:24DefNCFiWTP8OjYWiXuYe",
             // Original Deluxe
             "spotify:track:1nYWTzy5zu3zEPNgB1sItW",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:3QFB14MOUf3imlyISNmrbT",
             // Repuation Stadium Tour Surprise Song
             "spotify:track:1XLc4irbX7oQSneh6gWv3O",
             // BMRRS
@@ -71,8 +61,6 @@ const speak_now = [
             "spotify:track:7hZuICN5eaCuQyp443RCt6",
             // Original Deluxe
             "spotify:track:1ubvV5ECkm6nSI6g1HmbBK",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:4DbI1rr4IQ2bc8nejy9ttd",
             // BMRRS
             "spotify:track:7I3hYiXgQYPLS0HsPF9mrk",
         ],
@@ -85,8 +73,6 @@ const speak_now = [
             "spotify:track:5yEPktRqvIhko5QFF3aBhQ",
             // Original Deluxe
             "spotify:track:4N60XfcTE1ysLZGbYgnYXq",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:7mFiEij8AXPUZB7aKLbUlQ",
             // Reputation Stadium Tour Surprise Song
             "spotify:track:5rcHBt2aNcGFWW0jaAUe1L",
             // BMRRS
@@ -103,8 +89,6 @@ const speak_now = [
             "spotify:track:19tHCfzUSoy5HkpxcmbA0A",
             // Original Deluxe 2
             "spotify:track:74WBGgUnpKrJXt6TETfR6Z",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:72GIZuUXo14oyrS0si3Rgc",
             // Repuation Stadium Tour Surprise Song
             "spotify:track:2fF3QzbGCrtrDXIdWcg1mv",
             // BMRRS
@@ -133,8 +117,6 @@ const speak_now = [
             "spotify:track:10eBRyImhfqVvkiVEGf0N0",
             // Original Deluxe
             "spotify:track:14LtANuaslKWyYbktUrHBU",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:3lm4L3pPL32PFy74dR17OR",
             // Repuation Stadium Tour Surprise Song
             "spotify:track:5lg33MHs1BoUtJVClw8ZpI",
             // BMRRS
@@ -149,8 +131,6 @@ const speak_now = [
             "spotify:track:2ythurkTtSiyfK7GprJoFW",
             // Original Deluxe
             "spotify:track:1By2VQkUN0Frd8mKNV5NYC",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:6505MLhnqTDDg4tjoUz2Wp",
             // BMRRS
             "spotify:track:1Ou5KTDC8WTcRYzF6TuCOM",
         ],
@@ -177,10 +157,6 @@ const speak_now = [
             "spotify:track:28M2gifMU282QBM3fKajIS",
             // Original Deluxe
             "spotify:track:11UaQaEp2LvdspTyyuE3ur",
-            // Original Deluxe (Acoustic)
-            "spotify:track:62rlxI6g2PNaWsHoiRryto",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:6znB7YZhMJT2B83zfbiyLq",
             // Reputation Stadium Tour Surprise Song
             "spotify:track:6CB7DczrX9ZJB9Wkjegmaq",
             // BMRRS
@@ -195,8 +171,6 @@ const speak_now = [
             "spotify:track:4h0EXpatqJImv4VRgvX6po",
             // Original Deluxe
             "spotify:track:1D27z8xNzjW0Mwwt1NCWhJ",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:6hH37tyeRdyan1mAppmVor",
             // BMRRS
             "spotify:track:15cELoe9O3O1Wj8APIXdyG",
         ],
@@ -209,8 +183,6 @@ const speak_now = [
             "spotify:track:6XDBA3QWX51lDJ0oZbaJJN",
             // Original Deluxe
             "spotify:track:7DjCRhhFo9PPzca1BjMLcf",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:5QkzyLUb4ggojNDp8G2OxX",
             // BMRRS
             "spotify:track:5gHX33LEbaLcQoCA5o93JQ",
         ],
@@ -221,8 +193,6 @@ const speak_now = [
         "originals": [
             // Original Deluxe
             "spotify:track:1EQn3Uc5AyUXoiPLeyCrrg",
-            // Live (Speak Now World Tour Live)
-            "spotify:track:68QyrSzpnoU04AAhE5z8lj",
             // Reputation Stadium Tour Surprise Song
             "spotify:track:0V3SNHDka1JSCP71HAzpxw",
         ],

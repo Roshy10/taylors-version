@@ -1,4 +1,5 @@
 import fearless from "./fearless";
+import speak_now from "./speak_now";
 import red from "./red";
 
 const spotify = [
@@ -71,6 +72,7 @@ const spotify = [
     },
     ...fearless,
     ...red,
+    ...speak_now,
 ];
 
 export default spotify;

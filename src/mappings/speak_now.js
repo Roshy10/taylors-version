@@ -101,6 +101,8 @@ const speak_now = [
             "spotify:track:3RBluWmSoG2pGA1OePzGJI",
             // Original Deluxe
             "spotify:track:19tHCfzUSoy5HkpxcmbA0A",
+            // Original Deluxe 2
+            "spotify:track:74WBGgUnpKrJXt6TETfR6Z",
             // Live (Speak Now World Tour Live)
             "spotify:track:72GIZuUXo14oyrS0si3Rgc",
             // Repuation Stadium Tour Surprise Song
@@ -161,6 +163,8 @@ const speak_now = [
             "spotify:track:5GPwN5iZ9ZMSXAkppj4Uvv",
             // Original Deluxe
             "spotify:track:3kfgJql90tzgoxByioAMXR",
+            // Original Deluxe 2
+            "spotify:track:4LraIz87diVQdDK0rhi0S4",
             // BMRRS
             "spotify:track:0xGGOx0t5rWxX28iZyVWyc",
         ],

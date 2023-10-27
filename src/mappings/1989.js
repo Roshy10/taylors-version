@@ -13,8 +13,6 @@ const _1989 = [
             "spotify:track:7aMftpNNJiQj1c2rllc8Dk",
             // Pride Month 
             "spotify:track:1YYOx55cW5JfMe65zEHBdu",
-            // BM #1's Vol.4
-            "spotify:track:5oID3Qj3tTCZEH9eo0snxm"
         ],
     },
     // Blank Space
@@ -30,7 +28,7 @@ const _1989 = [
             // BMRRS 
             "spotify:track:1kHEuJRasudLhjvnbfc4yS",
             // BM #1's Vol.4
-            "spotify:track:1YYOx55cW5JfMe65zEHBdu",
+            "spotify:track:0jjIPthFhpbBNr4my8cePO",
         ],
     },
     // Style
@@ -83,24 +81,8 @@ const _1989 = [
             "spotify:track:0cqRj7pUJDkTCEsJkx8snD",
             // Pride Month 2023
             "spotify:track:0PEZYlPV0BxoLl9M3pjVnP",
-            // Women of Country
-            "spotify:track:5pJvzBpE1KSMxEgMg5Ft31",
-            // For Your Quarantine
-            "spotify:track:6PRELLjOe8RaRIcW0sHskx",
-            // Women of Big Machine
-            "spotify:track:4ZspJzYIxOztSc9hZmcLzH",
-        ],
-    },
-    // Shake It Off
-    {
-        "replacement": "spotify:track:3pv7Q5v2dpdefwdWIvE7yH",
-        "originals": [
-            // original
-            "spotify:track:1kKlhuQE0HXp1IwBRpaH2P",
-            // original deluxe 
-            "spotify:track:0cqRj7pUJDkTCEsJkx8snD",
-            // Pride Month 2023
-            "spotify:track:0PEZYlPV0BxoLl9M3pjVnP",
+            // BM Hits Vol.4
+            "spotify:track:5oID3Qj3tTCZEH9eo0snxm",
             // Women of Country
             "spotify:track:5pJvzBpE1KSMxEgMg5Ft31",
             // For Your Quarantine
@@ -247,6 +229,6 @@ const _1989 = [
             "spotify:track:0qAIiGFKLdV1xpNlEhjpq8"
         ],
     },
-]
+];
 
 export default _1989;

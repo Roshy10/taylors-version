@@ -44,6 +44,7 @@
     "babel-polyfill": "^6.26.0",
     "clsx": "^1.1.1",
     "i18next": "^19.4.3",
+    "i18next-browser-languagedetector": "^7.1.0",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
     "query-string": "^6.14.0",

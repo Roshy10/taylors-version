@@ -48,7 +48,7 @@ export const getPlaylistTracks = (playlistId) => getRequest(
     {
         limit: 100,
         market: "from_token",
-        fields: "next,offset,items(track(name,uri,external_urls,album(images,name)))",
+        fields: "next,offset,items(track(name,uri,external_urls,linked_from,album(images,name)))",
     },
     storePlaylistTracks,
     true,

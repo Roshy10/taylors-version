@@ -1,7 +1,6 @@
 import {buffers} from "@redux-saga/core";
-import {chunk, find, reverse, sortBy, uniq} from "lodash";
+import {chunk, get, reverse, sortBy, uniq} from "lodash";
 import {actionChannel, all, call, delay, put, race, take, takeEvery} from "redux-saga/effects";
-import spotify from "../../mappings/spotify";
 import {resetStats} from "../actions/HttpActions";
 import {showSnackbar} from "../actions/NotificationActions";
 import {purgePlaylists} from "../actions/PlaylistActions";
@@ -35,8 +34,9 @@ function* dispatchPlaylistReplacement(playlist) {
         yield putFailure();
     } else {
         const tracksToRemove = uniq(tracks.flatMap((track) => {
-            const replacementObject = find(spotify, ["replacement", track.replacement]);
-            return replacementObject ? replacementObject.originals : [];
+            const trackUri = get(track, "uri");
+            const linkedTrackUri = get(track, "linked_from.uri");
+            return linkedTrackUri ? [linkedTrackUri, trackUri] : [trackUri];
         }));
         const chunkedTracks = chunk(tracksToRemove, 100);
 

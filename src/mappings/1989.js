@@ -57,6 +57,10 @@ const _1989 = [
             "spotify:track:0qUnBLZ8bJqUNEeQgayL9t",
             // BMRRS
             "spotify:track:7CkJgmJ3RFU6jNXNHgRkBw",
+            // Others
+            "spotify:track:6YHzSWA80uf3LHYMGoDZlM",
+            "spotify:track:0GmfiNHSgkKamYgQEMYOH3",
+            "spotify:track:2zbVATcYiggJSWeSZkDFgd",
         ],
     },
     // All You Had To Do Was Stay
@@ -89,6 +93,15 @@ const _1989 = [
             "spotify:track:4ZspJzYIxOztSc9hZmcLzH",
             // Hope: Songs of Love and Strength
             "spotify:track:2JH2oziHRcxEFUHgfZNm2S",
+            // Others
+            "spotify:track:4mEk3TJYIxh1ISDzEpkYoF",
+            "spotify:track:5oID3Qj3tTCZEH9eo0snxm",
+            "spotify:track:3OtAiLvFzNB8KMnzdyHVnq",
+            "spotify:track:7BNBo9g7x0EK46d44HFkKH",
+            "spotify:track:1CiVz2WkmZRwhU3A6J2Gjz",
+            "spotify:track:4RPkqiTSRzdo0RPg13bE8n",
+            "spotify:track:6zpQwkOGOTt6OCnMdNKjHl",
+            "spotify:track:21txIeEaimkRCzPOH8L9HG",
         ],
     },
     // I Wish You Would
@@ -208,7 +221,9 @@ const _1989 = [
         "replacement": "spotify:track:2ve0kuaWUCt4Zx8x4bf1MR",
         "originals": [
             // original deluxe
-            "spotify:track:6RvRzl1YJTDnUvdOtV21IK"
+            "spotify:track:6RvRzl1YJTDnUvdOtV21IK",
+            // Others
+            "spotify:track:0eTCaVOYLpJlSkbEi2jay4"
         ],
     },
     // You Are In Love
@@ -216,7 +231,9 @@ const _1989 = [
         "replacement": "spotify:track:4UwqOWDpdeIDVQDuKT6iza",
         "originals": [
             // original deluxe
-            "spotify:track:2KrOAg6FftbjgSKdd2a4rS"
+            "spotify:track:2KrOAg6FftbjgSKdd2a4rS",
+            // Others
+            "spotify:track:5CMw15fx1o2OW2jzaYy36L"
         ],
     },
     // New Romantics

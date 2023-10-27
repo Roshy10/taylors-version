@@ -155,6 +155,12 @@ const album_1989 = [
             "spotify:track:0qAIiGFKLdV1xpNlEhjpq8",
         ],
     },
+    {   // Bad Blood (feat. Kendrick Lamar)
+        "replacement": "spotify:track:6qAcApH8obo8eqatCKUHd9",
+        "originals": [
+            "spotify:track:6xsEAm6w9oMQYYg3jkEkMT",
+        ],
+    },
 ];
 
 export default album_1989;

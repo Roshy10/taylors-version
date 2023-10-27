@@ -1,160 +1,252 @@
-const album_1989 = [
-    {   // Welcome To New York
+const _1989 = [
+    // Welcome to New York
+    {
         "replacement": "spotify:track:1hR8BSuEqPCCZfv93zzzz9",
         "originals": [
-            "spotify:track:3nRmDz7qGCvsMS30rGGY0x",
-            "spotify:track:1YYOx55cW5JfMe65zEHBdu",
+            // original
             "spotify:track:10nqz67NQWWa7XPq7ycihi",
+            // original deluxe 
+            "spotify:track:3nRmDz7qGCvsMS30rGGY0x",
+            // Rep Stadium Tour 
             "spotify:track:3YLA3NgzFRRa7LiHMtFPby",
+            // BMRRS
             "spotify:track:7aMftpNNJiQj1c2rllc8Dk",
+            // Pride Month 
+            "spotify:track:1YYOx55cW5JfMe65zEHBdu",
+            // BM #1's Vol.4
+            "spotify:track:5oID3Qj3tTCZEH9eo0snxm"
         ],
     },
-    {   // Blank Space
-        "replacement": "https://open.spotify.com/track/45wMBGri1PORPjM9PwFfrS?si=52a2f5d7d9cd4aef",
+    // Blank Space
+    {
+        "replacement": "spotify:track:45wMBGri1PORPjM9PwFfrS",
         "originals": [
-            "spotify:track:0jjIPthFhpbBNr4my8cePO",
-            "spotify:track:1u8c2t2Cy7UBoG4ArRcF5g",
-            "spotify:track:3LB2qckfpZq7aybaoZKRa2",
+            // original
             "spotify:track:2ls70nUDfjzm1lSRDuKxmw",
+            // original deluxe 
+            "spotify:track:1u8c2t2Cy7UBoG4ArRcF5g",
+            // Gameday Country 
+            "spotify:track:3LB2qckfpZq7aybaoZKRa2",
+            // BMRRS 
             "spotify:track:1kHEuJRasudLhjvnbfc4yS",
+            // BM #1's Vol.4
+            "spotify:track:1YYOx55cW5JfMe65zEHBdu",
         ],
     },
-    {   // Style
-        "replacement": "https://open.spotify.com/track/1hjRhYpWyqDpPahmSlUTlc?si=69134efbfcf948c2",
+    // Style
+    {
+        "replacement": "spotify:track:1hjRhYpWyqDpPahmSlUTlc",
         "originals": [
-            "spotify:track:60636BsHWxFi7SfYxbP0UV",
-            "spotify:track:0ug5NqcwcFR2xrfTkc7k8e",
+            // original
             "spotify:track:71PmZqBXH0RUETqxpwlV0w",
+            // original deluxe 
+            "spotify:track:0ug5NqcwcFR2xrfTkc7k8e",
+            // BMRRS 
             "spotify:track:4D7kxLhSz7siCOw7KA5rQn",
+            // BM #1's Vol.4
+            "spotify:track:60636BsHWxFi7SfYxbP0UV",
         ],
     },
-    {   // Out Of The Woods
-        "replacement": "https://open.spotify.com/track/045ZeOHPIzhxxsm8bq5kyE?si=49e6f770cde94fb6",
+    // Out of the Woods
+    {
+        "replacement": "spotify:track:045ZeOHPIzhxxsm8bq5kyE",
         "originals": [
-            "spotify:track:6YHzSWA80uf3LHYMGoDZlM",
-            "spotify:track:0qUnBLZ8bJqUNEeQgayL9t",
-            "spotify:track:7CkJgmJ3RFU6jNXNHgRkBw",
-            "spotify:track:0GmfiNHSgkKamYgQEMYOH3",
-            "spotify:track:2zbVATcYiggJSWeSZkDFgd",
+            // original
             "spotify:track:7EpVQjqtKygiwJIASxMWNg",
+            // original deluxe 
+            "spotify:track:0qUnBLZ8bJqUNEeQgayL9t",
+            // BMRRS
+            "spotify:track:7CkJgmJ3RFU6jNXNHgRkBw",
+            // Rep Surprise Playlist
+            "spotify:track:1MPAXuTVL2Ej5x0JHiSPq8",
         ],
     },
-    {   // All You Had To Do Was Stay
-        "replacement": "https://open.spotify.com/track/6GXgd1BPD9bUpqw5AntGV5?si=7f0978d59cad41cd",
+    // All You Had To Do Was Stay
+    {
+        "replacement": "spotify:track:6GXgd1BPD9bUpqw5AntGV5",
         "originals": [
-            "spotify:track:50Pu9HKAcPm8TFL2zDrouh",
-            "spotify:track:6aLOekfwbytwWvQftxTEF0",
+            // original
             "spotify:track:4NNolUeL5m2ju7kf8pdg6H",
+            // original deluxe 
+            "spotify:track:6aLOekfwbytwWvQftxTEF0",
+            // BMRRS 
+            "spotify:track:50Pu9HKAcPm8TFL2zDrouh",
         ],
     },
-    {   // Shake It Off
-        "replacement": "https://open.spotify.com/track/3pv7Q5v2dpdefwdWIvE7yH?si=369c1e8db0cb4645",
+    // Shake It Off
+    {
+        "replacement": "spotify:track:3pv7Q5v2dpdefwdWIvE7yH",
         "originals": [
-            "spotify:track:4mEk3TJYIxh1ISDzEpkYoF",
-            "spotify:track:4ZspJzYIxOztSc9hZmcLzH",
-            "spotify:track:5oID3Qj3tTCZEH9eo0snxm",
-            "spotify:track:0cqRj7pUJDkTCEsJkx8snD",
-            "spotify:track:3OtAiLvFzNB8KMnzdyHVnq",
-            "spotify:track:6PRELLjOe8RaRIcW0sHskx",
-            "spotify:track:7BNBo9g7x0EK46d44HFkKH",
-            "spotify:track:2JH2oziHRcxEFUHgfZNm2S",
-            "spotify:track:5pJvzBpE1KSMxEgMg5Ft31",
-            "spotify:track:1CiVz2WkmZRwhU3A6J2Gjz",
-            "spotify:track:0PEZYlPV0BxoLl9M3pjVnP",
-            "spotify:track:4RPkqiTSRzdo0RPg13bE8n",
-            "spotify:track:6zpQwkOGOTt6OCnMdNKjHl",
+            // original
             "spotify:track:1kKlhuQE0HXp1IwBRpaH2P",
-            "spotify:track:21txIeEaimkRCzPOH8L9HG",
+            // original deluxe 
+            "spotify:track:0cqRj7pUJDkTCEsJkx8snD",
+            // Pride Month 2023
+            "spotify:track:0PEZYlPV0BxoLl9M3pjVnP",
+            // Women of Country
+            "spotify:track:5pJvzBpE1KSMxEgMg5Ft31",
+            // For Your Quarantine
+            "spotify:track:6PRELLjOe8RaRIcW0sHskx",
+            // Women of Big Machine
+            "spotify:track:4ZspJzYIxOztSc9hZmcLzH",
         ],
     },
-    {   // I Wish You Would
-        "replacement": "https://open.spotify.com/track/43y1WpBdnEy5TR9aZoSQL9?si=669dcf2e28f94bd9",
+    // Shake It Off
+    {
+        "replacement": "spotify:track:3pv7Q5v2dpdefwdWIvE7yH",
         "originals": [
-            "spotify:track:5gRYrtvyVyaCRvLt56OfuV",
-            "spotify:track:3JPOspEefgmGT5Hyy11oQJ",
+            // original
+            "spotify:track:1kKlhuQE0HXp1IwBRpaH2P",
+            // original deluxe 
+            "spotify:track:0cqRj7pUJDkTCEsJkx8snD",
+            // Pride Month 2023
+            "spotify:track:0PEZYlPV0BxoLl9M3pjVnP",
+            // Women of Country
+            "spotify:track:5pJvzBpE1KSMxEgMg5Ft31",
+            // For Your Quarantine
+            "spotify:track:6PRELLjOe8RaRIcW0sHskx",
+            // Women of Big Machine
+            "spotify:track:4ZspJzYIxOztSc9hZmcLzH",
+            // Hope: Songs of Love and Strength
+            "spotify:track:2JH2oziHRcxEFUHgfZNm2S",
+        ],
+    },
+    // I Wish You Would
+    {
+        "replacement": "spotify:track:43y1WpBdnEy5TR9aZoSQL9",
+        "originals": [
+            // original
             "spotify:track:5RVJ6VKfwtosA5Q1qeHdjF",
+            // original deluxe 
+            "spotify:track:5gRYrtvyVyaCRvLt56OfuV",
+            // BMRRS
+            "spotify:track:3JPOspEefgmGT5Hyy11oQJ",
+            // Country Workout Vol.1
             "spotify:track:0t0MOVBcdiOXS8FblHewBx",
         ],
     },
-    {   // Bad Blood
-        "replacement": "https://open.spotify.com/track/64FzgoLZ3oXu2SriZblHic?si=9af0e5cd3b314f57",
+    // Bad Blood
+    {
+        "replacement": "spotify:track:64FzgoLZ3oXu2SriZblHic",
         "originals": [
-            "spotify:track:2NlmmAjGYrrjAp0MED5rGx",
-            "spotify:track:4SHyS2ThjrS1iBGruKweCz",
+            // original
             "spotify:track:0TvQLMecTE8utzoNmvXRbK",
-            "spotify:track:5QmXcfqaz8TobfNbkoDHvP",
+            // original deluxe 
+            "spotify:track:2NlmmAjGYrrjAp0MED5rGx",
+            // BMRRS
+            "spotify:track:4SHyS2ThjrS1iBGruKweCz",
+            // Ft. Kendrick Lamar
             "spotify:track:6xsEAm6w9oMQYYg3jkEkMT",
+            // Be my Anti-Valentine 2022
+            "spotify:track:5QmXcfqaz8TobfNbkoDHvP",
         ],
     },
-    {   // Wildest Dreams
-        "replacement": "https://open.spotify.com/track/1K39ty6o1sHwwlZwO6a7wK?si=9dd9e9cac6714509",
+    // Wildest Dreams
+    {
+        "replacement": "spotify:track:1K39ty6o1sHwwlZwO6a7wK",
         "originals": [
+            // Taylor's Version Pre-release Single
+            "spotify:track:1Ov37jtRQ2YNAe8HzfczkL",
+            // 1989
             "spotify:track:3fVnlF4pGqWI9flVENcT28",
-            "spotify:track:3ScVaMDQwaD8iumBYzcDvr",
-            "spotify:track:22C0JIVhFaczZ4t9heqREN",
+            // 1989 (Deluxe)
             "spotify:track:4A4A6dwl5DqdqrZaEtKGPR",
+            // 1989 North America
             "spotify:track:59HjlYCeBsxdI0fcm3zglw",
+            // 1989 (Deluxe) North America
             "spotify:track:106R7Z57WYzBAfrXImV30y",
+            // rep surprise playlist
+            "spotify:track:22C0JIVhFaczZ4t9heqREN",
+            // BMRRS
+            "spotify:track:3ScVaMDQwaD8iumBYzcDvr",
         ],
     },
-    {   // How You Get The Girl
-        "replacement": "https://open.spotify.com/track/75W3SngKzTuoQ94uLf3y82?si=a979ced11bd64204",
+    // How You Get The Girl
+    {
+        "replacement": "spotify:track:75W3SngKzTuoQ94uLf3y82",
         "originals": [
-            "spotify:track:0fM9dEhUFV4MHDuJgrcfOv",
-            "spotify:track:1l6KjnsqP2atawKgBV49u3",
+            // original
             "spotify:track:5Z9ocF6ng0m2haHnKtHwTp",
+            // original deluxe 
+            "spotify:track:0fM9dEhUFV4MHDuJgrcfOv",
+            // BMRRS
+            "spotify:track:1l6KjnsqP2atawKgBV49u3",
+            // Rep Surprise Playlist
             "spotify:track:3aSYZ4upQ6OSNos26YeVWL",
         ],
     },
-    {   // This Love
-        "replacement": "https://open.spotify.com/track/5QVVjX0ZItqlVpEuVCM9Yg?si=077abc2641b24673",
+    // This Love
+    {
+        "replacement": "spotify:track:5QVVjX0ZItqlVpEuVCM9Yg",
         "originals": [
+            // Taylor's Version Pre-release Single
+            "spotify:track:4d1CG5ei1E2vGbvmgf5KKv",
+            // 1989
             "spotify:track:7lTxQZVXlvIX7Z3szSy8Sh",
-            "spotify:track:64KRxmbqypPBlya4nxFmDn",
-            "spotify:track:5yCRSEPJXzjzl3Gov0YduA",
+            // 1989 (Deluxe)
             "spotify:track:4L560fic5PaTuCFm6CviKa",
+            // 1989 North America
             "spotify:track:3oKMl2tJv4fdidkXUYMI5x",
+            // 1989 (Deluxe) North America
             "spotify:track:1kTPQnabROVkW9bUXdCGrB",
+            // 1989 (Deluxe Edition) Canada
             "spotify:track:28VqgFAhYCU7FdAm7dvEjp",
+            // rep surprise playlist
+            "spotify:track:64KRxmbqypPBlya4nxFmDn",
+            // BMRRS
+            "spotify:track:5yCRSEPJXzjzl3Gov0YduA",
         ],
     },
-    {   // I Know Places
-        "replacement": "https://open.spotify.com/track/2f0GI2ZLUtbGqFx8t2Gk6A?si=b4903ae32c414055",
+    // I Know Places
+    {
+        "replacement": "spotify:track:2f0GI2ZLUtbGqFx8t2Gk6A",
         "originals": [
+            // original
             "spotify:track:6Ck9WerfsyvC4v4AylUoDp",
-            "spotify:track:3qGLcmO0XnnrcpAQGZwTvA",
+            // original deluxe 
             "spotify:track:6EwNJz8CuVsrsLvXprJ20Q",
+            // BMRRS
             "spotify:track:1fDfzSgIEFWDuX383vRiAv",
+            // Rep Surprise Playlist
+            "spotify:track:3qGLcmO0XnnrcpAQGZwTvA",
         ],
     },
-    {   // Clean
-        "replacement": "https://open.spotify.com/track/2ByBBvpR9b7IynvRmnG7kG?si=2296d8aa0bcd4166",
+    // Clean
+    {
+        "replacement": "spotify:track:2ByBBvpR9b7IynvRmnG7kG",
         "originals": [
-            "spotify:track:1s4CiRufJUyeyQT6HRmu7S",
+            // original
             "spotify:track:2k43eySbfpDVx0PrO99UI8",
+            // original deluxe 
             "spotify:track:1NmVZsG18CzCAtw7rnV3yA",
+            // BMRRS
+            "spotify:track:1s4CiRufJUyeyQT6HRmu7S"
         ],
     },
-    {   // Wonderland
-        "replacement": "https://open.spotify.com/track/2ve0kuaWUCt4Zx8x4bf1MR?si=1681f2786b464203",
+    // Wonderland
+    {
+        "replacement": "spotify:track:2ve0kuaWUCt4Zx8x4bf1MR",
         "originals": [
-            "spotify:track:6RvRzl1YJTDnUvdOtV21IK",
-            "spotify:track:0eTCaVOYLpJlSkbEi2jay4",
+            // original deluxe 
+            "spotify:track:6RvRzl1YJTDnUvdOtV21IK"
         ],
     },
-    {   // You Are In Love
-        "replacement": "https://open.spotify.com/track/4UwqOWDpdeIDVQDuKT6iza?si=0c41b4034b884603",
+    // You Are In Love
+    {
+        "replacement": "spotify:track:4UwqOWDpdeIDVQDuKT6iza",
         "originals": [
-            "spotify:track:5CMw15fx1o2OW2jzaYy36L",
-            "spotify:track:2KrOAg6FftbjgSKdd2a4rS",
+            // original deluxe 
+            "spotify:track:2KrOAg6FftbjgSKdd2a4rS"
         ],
     },
-    {   // New Romantics
-        "replacement": "https://open.spotify.com/track/2vPMoMDXxu9uX1igWZmXSG?si=a0183e61a2df47f5",
+    // New Romantics
+    {
+        "replacement": "spotify:track:2vPMoMDXxu9uX1igWZmXSG",
         "originals": [
-            "spotify:track:0qAIiGFKLdV1xpNlEhjpq8",
+            // original deluxe 
+            "spotify:track:0qAIiGFKLdV1xpNlEhjpq8"
         ],
     },
-];
+]
 
-export default album_1989;
+export default _1989;

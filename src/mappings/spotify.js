@@ -1,7 +1,7 @@
-import album_1989 from "./1989";
 import fearless from "./fearless";
 import red from "./red";
 import speak_now from "./speak_now";
+import _1989 from "./1989";
 
 const spotify = [
     // Single - Safe & Sound 
@@ -36,7 +36,7 @@ const spotify = [
     ...fearless,
     ...red,
     ...speak_now,
-    ...album_1989,
+    ..._1989,
 ];
 
 export default spotify;

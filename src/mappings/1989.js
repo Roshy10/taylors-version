@@ -1,4 +1,4 @@
-const _1989 = [
+const album_1989 = [
     // Welcome to New York
     {
         "replacement": "spotify:track:1hR8BSuEqPCCZfv93zzzz9",
@@ -246,4 +246,4 @@ const _1989 = [
     },
 ]
 
-export default _1989;
+export default album_1989;

@@ -142,8 +142,6 @@ const album_1989 = [
             "spotify:track:2NlmmAjGYrrjAp0MED5rGx",
             // BMRRS
             "spotify:track:4SHyS2ThjrS1iBGruKweCz",
-            // Ft. Kendrick Lamar
-            "spotify:track:6xsEAm6w9oMQYYg3jkEkMT",
             // Be my Anti-Valentine 2022
             "spotify:track:5QmXcfqaz8TobfNbkoDHvP",
             // 1989 TV standard

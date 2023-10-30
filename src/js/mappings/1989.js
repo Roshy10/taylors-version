@@ -3,7 +3,7 @@ import ARTIST_IDS from "./artists";
 const album_1989 = [
     {
         name: "Welcome To New York",
-        replacement: "spotify:track:1hR8BSuEqPCCZfv93zzzz9",
+        replacement: "spotify:track:4WUepByoeqcedHoYhSNHRt",
     },
     {
         name: "Blank Space",
